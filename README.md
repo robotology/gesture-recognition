@@ -9,7 +9,7 @@ This package contains modules that deal with gesture recognition using the Kinec
 - [YARP](https://github.com/robotology/yarp)
 - [icub-contrib-common](https://github.com/robotology/icub-contrib-common)
 - [KinectWrapper](https://github.com/robotology-playground/kinectWrapper.git)
-- [OpenCV]
+- [OpenCV] (http://opencv.org/downloads.html)
 
 ##### Cmaking the project
 The project is composed of three modules. The gestureRecognition module can be used independently on the others. 
