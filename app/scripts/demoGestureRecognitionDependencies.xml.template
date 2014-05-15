@@ -1,0 +1,41 @@
+
+<application>
+<name>Demo Gesture Recognition Dependencies</name>
+
+           <module>
+                   <name>speechRecognizer</name>
+                   <node>icub-win1</node>
+                   <tag>speechRecognizerTag</tag>
+        </module>
+           
+        <module>
+                   <name>attentionSelector</name>
+                   <node>console</node>
+                   <tag>attentionSelectorTag</tag>
+        </module>
+
+        <module>
+                   <name>objectsPropertiesCollector</name>
+                   <node>console</node>
+                   <tag>objectsPropertiesCollectorTag</tag>
+        </module>
+
+        <module>
+                   <name>agentDetector</name>
+                   <node>console</node>
+                   <tag>agentDetectorTag</tag>
+        </module>
+
+        <module>
+                   <name>referenceFrameHandler</name>
+                   <node>console</node>
+                   <tag>referenceFrameHandlerTag</tag>
+        </module>
+
+        <module>
+                   <name>kinectServer</name>
+                   <node>ikart</node>
+                   <tag>kinectServerTag</tag>
+        </module>
+           
+</application>

@@ -1,0 +1,78 @@
+
+<application>
+<name>Demo Gesture Recognition</name>
+
+        <dependencies>
+            <port>/kinectServer/depth:o</port>
+        </dependencies>
+           
+           <module>
+                   <name>iSpeak</name>
+                   <node>console</node>
+                   <tag>iSpeakTag</tag>
+        </module>
+           
+        <module>
+            <name>gestureRecognition</name>
+            <parameters>--showImages false</parameters>
+            <node>ila</node>
+                   <stdio>ila</stdio>
+            <tag>gestureRecognitionTag</tag>
+        </module>
+           
+           <module>
+                   <name>gestureRecognitionActionPerformer</name>
+                   <node>icub-b11</node>
+                   <tag>gestureRecognitionActionPerformerTag</tag>
+        </module>
+           
+           <module>
+                   <name>gestureRecognitionGameManager</name>
+                   <node>icub-b12</node>
+                   <tag>gestureRecognitionGameManagerTag</tag>
+        </module>
+           
+           <module>
+            <name>yarpview</name>
+            <parameters>--name /skeleton</parameters>
+            <node>ila</node>
+            <tag>depth</tag>
+        </module>
+           
+      <connection>
+                   <from>/gestureRecognition/images</from>
+                   <to>/skeleton</to>
+                   <protocol>udp</protocol>
+      </connection>
+           
+        <connection>
+            <from>/gestureRecognition/scores</from>
+            <to>/gestureRecognitionGameManager/in</to>
+            <protocol>tcp</protocol>
+        </connection>
+           
+           <connection>
+            <from>/gestureRecognitionActionPerformer/donePort</from>
+            <to>/gestureRecognitionGameManager/rpc</to>
+            <protocol>tcp</protocol>
+        </connection>
+           
+           <connection>
+            <from>/gestureRecognitionGameManager/out</from>
+            <to>/gestureRecognitionActionPerformer/rpc</to>
+            <protocol>tcp</protocol>
+        </connection>
+           
+           <connection>
+            <from>/gestureRecognitionGameManager/outspeak</from>
+            <to>/iSpeak</to>
+            <protocol>tcp</protocol>
+        </connection>
+
+           <connection>
+            <from>/gestureRecognitionGameManager/attsel:rpc</from>
+            <to>/attentionSelector/rpc</to>
+            <protocol>tcp</protocol>
+        </connection>
+
+</application>

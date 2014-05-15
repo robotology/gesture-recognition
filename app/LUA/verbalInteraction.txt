@@ -1,0 +1,15 @@
+
+
+### Commands:
+ - Let's start  
+ - You rock 
+ - You lost 
+ - Your turn 
+ - Game over 
+ - Good bye 
+ 
+ ### To save:
+ - Let's save
+ - Let's stop
+
+
