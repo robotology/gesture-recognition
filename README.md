@@ -1,7 +1,7 @@
 gestureRecognition
 ==================
 
-This package contains modules that deal with gesture recognition using the Kinect (or Asus Xtion) sensor. The gestureRecognition module implements a method to recognize gestures from a predefined set (examples of such gestures can be found in app/conf/supported_actions_easy.jpg or app/conf/supported_actions_hard.jpg). It is independent on the device and the operating system that is being used. Indeed, the KinectWrapper library, which is one of its dependencies, already provides an interface that deals with different devices and operating systems. The modules inside the game folder realizes, together with the gestureRecognition one, the memory game called All gestures you can (https://www.youtube.com/watch?v=U_JLoe_fT3I&list=UUXBFWo4IQFkSJBfqdNrE1cA).
+This package contains modules that deal with gesture recognition using the Kinect (or Asus Xtion) sensor. The gestureRecognition module implements a method to recognize gestures from a predefined set (examples of such gestures can be found in `app/conf/supported_actions_easy.jpg` or `app/conf/supported_actions_hard.jpg`). It is independent on the device and the operating system that is being used. Indeed, the `KinectWrapper` library, which is one of its dependencies, already provides an interface that deals with different devices and operating systems. The modules inside the game folder realizes, together with the gestureRecognition one, the memory game called [All gestures you can](https://www.youtube.com/watch?v=U_JLoe_fT3I&list=UUXBFWo4IQFkSJBfqdNrE1cA).
 
 ## Installation
 
@@ -9,13 +9,13 @@ This package contains modules that deal with gesture recognition using the Kinec
 - [YARP](https://github.com/robotology/yarp)
 - [icub-contrib-common](https://github.com/robotology/icub-contrib-common)
 - [KinectWrapper](https://github.com/robotology-playground/kinectWrapper.git)
-- [OpenCV] (http://opencv.org/downloads.html)
+- [OpenCV](http://opencv.org/downloads.html)
 
 ##### Cmaking the project
 The project is composed of three modules. The gestureRecognition module can be used independently on the others. 
 
 ##### Running the gestureRecognition module
-In order to utilize this module, a KinectServer module (in https://github.com/robotology-playground/kinectWrapper.git) has to be running.
+In order to utilize this module, the `KinectServer` module (coded in [KinectWrapper](https://github.com/robotology-playground/kinectWrapper.git)) has to be running.
 
 ## Architecture of the game
 
@@ -25,15 +25,16 @@ The entire architecture can be run from the script files and can be seen in the 
 
 ![Diagram of All Gestures You Can architecture](misc/architecture.png) 
  
-First, the dependencies have to be launched (app/scripts/demoGestureRecognitionDependencies.xml), then the main modules (app/scripts/demoGestureRecognition.xml). Finally, the file app/scripts/demoRec_main.lua has to be run. 
+First, the dependencies have to be launched (`app/scripts/demoGestureRecognitionDependencies.xml`), then the main modules (`app/scripts/demoGestureRecognition.xml`). Finally, the script `app/scripts/demoRec_main.lua` has to be launched. 
 
 The commands that have to be provided are, respectively:
-- "Let's start", to start the game. If the robot starts, it will say "It's your turn", and the person will just have to perform the gesture. Otherwise, the person will perform the gesture and then say "Your turn".
-- "Your turn", as soon as the person is finished performing the gestures.
-- "You rock", after that the robot says "I think you are wrong", to let the robot know that it won.
-- "You lost", after that the robot says "I think you are wrong", to let the robot known that it lost.
-- "Game over", to finish the game sooner than expected.
-- "Good bye", to close the LUA application. 
+
+- **"Let's start"**, to start the game. If the robot starts, it will say **"It's your turn"**, and the person will just have to perform the gesture. Otherwise, the person will perform the gesture and then say **"Your turn"**.
+- **"Your turn"**, as soon as the person is finished performing the gestures.
+- **"You rock"**, after that the robot says **"I think you are wrong"**, to let the robot know that it won.
+- **"You lost"**, after that the robot says **"I think you are wrong"**, to let the robot known that it lost.
+- **"Game over"**, to finish the game sooner than expected.
+- **"Good bye"**, to close the LUA application. 
 
 ## License
 
