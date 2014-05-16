@@ -10,12 +10,16 @@ This package contains modules that deal with gesture recognition using the Kinec
 - [icub-contrib-common](https://github.com/robotology/icub-contrib-common)
 - [KinectWrapper](https://github.com/robotology-playground/kinectWrapper.git)
 - [OpenCV](http://opencv.org/downloads.html)
+- [LUA](http://www.lua.org/)
+- speechRecognizer
+
+Scripts written in LUA are employed to manage the speech recognition part of the demo.
 
 ##### Cmaking the project
-The project is composed of three modules. The gestureRecognition module can be used independently on the others. 
+The project is composed of three modules. The gestureRecognition module can be used independently from the others. 
 
 ##### Running the gestureRecognition module
-In order to utilize this module, the `KinectServer` module (coded in [KinectWrapper](https://github.com/robotology-playground/kinectWrapper.git)) has to be running.
+In order to utilize this module, `KinectServer` (coded in [KinectWrapper](https://github.com/robotology-playground/kinectWrapper.git)) is to be running.
 
 ## Architecture of the game
 
