@@ -314,8 +314,7 @@ int main(int argc, char *argv[])
     ResourceFinder rf;
     rf.setVerbose(true);
     rf.setDefaultContext("gestureRecognition");
-
-    rf.setDefault("from","config.ini");
+    rf.setDefaultConfigFile("config.ini");
     rf.configure(argc,argv);
 
     GestureRecognitionGameManager mod;
