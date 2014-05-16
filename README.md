@@ -33,7 +33,7 @@ The commands that have to be provided are, respectively:
 - **"Your turn"**, as soon as the person is finished performing the gestures.
 - **"You rock"**, after that the robot says **"I think you are wrong"**, to let the robot know that it won.
 - **"You lost"**, after that the robot says **"I think you are wrong"**, to let the robot know that it lost.
-- **"Game over"**, to finish the game sooner than expected.
+- **"Game over"**, to quit the game straight away.
 - **"Good bye"**, to close the LUA application. 
 
 ## License
