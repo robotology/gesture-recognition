@@ -1,7 +1,7 @@
 gestureRecognition
 ==================
 
-This package contains modules that deal with gesture recognition using the Kinect (or Asus Xtion) sensor. The gestureRecognition module implements a method to recognize gestures from a predefined set (examples of such gestures can be found in `app/conf/supported_actions_easy.jpg` or `app/conf/supported_actions_hard.jpg`). It is independent on the device and the operating system that is being used. Indeed, the `KinectWrapper` library, which is one of its dependencies, already provides an interface that deals with different devices and operating systems. The modules inside the game folder realizes, together with the gestureRecognition one, the memory game called [All gestures you can](https://www.youtube.com/watch?v=U_JLoe_fT3I&list=UUXBFWo4IQFkSJBfqdNrE1cA).
+This package contains modules that deal with gesture recognition using the Kinect (or Asus Xtion) sensor so as the stereo vision of the iCub. The gestureRecognition module implements a method to recognize gestures from a predefined set (examples of such gestures can be found in `app/conf/supported_actions_easy.jpg` or `app/conf/supported_actions_hard.jpg`). It is independent on the device and the operating system that is being used. Indeed, the `KinectWrapper` library, which is one of its dependencies, already provides an interface that deals with different devices and operating systems. The modules inside the game folder realizes, together with the gestureRecognition one, the memory game called [All gestures you can](https://www.youtube.com/watch?v=U_JLoe_fT3I&list=UUXBFWo4IQFkSJBfqdNrE1cA).
 
 ## Installation
 
@@ -32,7 +32,7 @@ The commands that have to be provided are, respectively:
 - **"Let's start"**, to start the game. If the robot starts, it will say **"It's your turn"**, and the person will just have to perform the gesture. Otherwise, the person will perform the gesture and then say **"Your turn"**.
 - **"Your turn"**, as soon as the person is finished performing the gestures.
 - **"You rock"**, after that the robot says **"I think you are wrong"**, to let the robot know that it won.
-- **"You lost"**, after that the robot says **"I think you are wrong"**, to let the robot known that it lost.
+- **"You lost"**, after that the robot says **"I think you are wrong"**, to let the robot know that it lost.
 - **"Game over"**, to finish the game sooner than expected.
 - **"Good bye"**, to close the LUA application. 
 
