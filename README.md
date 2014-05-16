@@ -10,7 +10,7 @@ This package contains modules that deal with gesture recognition using the Kinec
 - [icub-contrib-common](https://github.com/robotology/icub-contrib-common)
 - [KinectWrapper](https://github.com/robotology-playground/kinectWrapper.git)
 - [OpenCV](http://opencv.org/downloads.html)
-- [LUA](http://www.lua.org/)
+- [LUA](http://www.lua.org/download.html)
 - speechRecognizer
 
 Scripts written in LUA are employed to manage the speech recognition part of the demo.
