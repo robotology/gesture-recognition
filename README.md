@@ -1,4 +1,4 @@
-gestureRecognition
+Gesture Recognition
 ==================
 
 This package contains modules that deal with gesture recognition using the Kinect (or Asus Xtion) sensor so as the stereo vision of the iCub. The gestureRecognition module implements a method to recognize gestures from a predefined set (examples of such gestures can be found in `app/conf/supported_actions_easy.jpg` or `app/conf/supported_actions_hard.jpg`). It is independent on the device and the operating system that is being used. Indeed, the `KinectWrapper` library, which is one of its dependencies, already provides an interface that deals with different devices and operating systems. The modules comprised here realize the memory game called [All gestures you can](https://www.youtube.com/watch?v=U_JLoe_fT3I&list=UUXBFWo4IQFkSJBfqdNrE1cA).
@@ -8,10 +8,10 @@ This package contains modules that deal with gesture recognition using the Kinec
 ##### Dependencies
 - [YARP](https://github.com/robotology/yarp)
 - [icub-contrib-common](https://github.com/robotology/icub-contrib-common)
-- [KinectWrapper](https://github.com/robotology-playground/kinectWrapper.git)
+- [kinect-wrapper](https://github.com/robotology/kinect-wrapper.git)
+- [speechRecognizer](https://github.com/robotology/speech)
 - [OpenCV](http://opencv.org/downloads.html)
 - [LUA](http://www.lua.org/download.html)
-- speechRecognizer
 
 Scripts written in LUA are employed to manage the speech recognition part of the demo.
 
