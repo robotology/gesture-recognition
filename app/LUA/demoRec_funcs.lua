@@ -20,6 +20,16 @@ function demoRec_actions(port, actName)
    return reply
 end
 
+function demoRec_save(port, actName)
+   local wb = yarp.Bottle()
+   local reply = yarp.Bottle()
+   wb:clear()
+   wb:addString("save")
+   wb:addString(actName)
+   port:write(wb,reply)
+   return reply
+end
+
 ----------------------------------
 -- functions SPEECH             --
 ----------------------------------

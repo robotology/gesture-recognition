@@ -2,6 +2,20 @@
 # Authors: Ilaria Gori
 # CopyPolicy: Released under the terms of the GNU GPL v2.0.
 
-add_subdirectory(gestureRecognition)
+find_package(kinectWrapper)
+find_package(stereoVision)
+
+if (kinectWrapper_FOUND)
+	add_subdirectory(gestureRecognition)
+else()
+	message("kinectWrapper has not been found, gestureRecognition will not be compiled")
+endif()
+
+if (stereoVision_FOUND)
+	add_subdirectory(gestureRecognitionStereo)
+else()
+	message("stereoVision has not been found, gestureRecognitionStereo will not be compiled")
+endif()
+
 add_subdirectory(game/gestureRecognitionActionPerformer)
 add_subdirectory(game/gestureRecognitionGameManager)

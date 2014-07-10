@@ -19,7 +19,7 @@ gestRec_port = yarp.Port()
 -- defining objects and actions vocabularies
 objects = {"octopus", "lego", "toy", "ladybug", "turtle", "car", "bottle", "box"}
 -- defining speech grammar for Menu
-grammar = "Let's start | You rock | You lost | Your turn | Game over | Good bye | Lets save | I stop"
+grammar = "Let's start | You rock | You lost | Your turn | Game over | Good bye | Lets save | I stop | Save one | Save two | Save three | Save four | Save five | Save six | Let's train | Let's recognize | Initial position"
 
 -- load state machine model and initalize it
 rf = yarp.ResourceFinder()

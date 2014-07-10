@@ -33,7 +33,6 @@ protected:
     };
 
     bool executing;
-    bool memoryUsed;
     bool go;
     int numActions;
     double toll;
@@ -105,8 +104,6 @@ protected:
         }
         else if (cmd.get(0).asString()=="stop")
         {
-            if (memoryUsed)
-                currentSequence.clear();
             executing=false;
             reply.addString("stopping execution module");
             fprintf(stdout, "Stopping execution module\n");
@@ -133,26 +130,14 @@ protected:
 
     void accumulate(const string& sequence)
     {
-        if (memoryUsed)
+        currentSequence.clear();
+        for (unsigned int i=0; i<sequence.size(); i++)
         {
-            string tag=sequence.substr((sequence.size()-2),1);
+            string tag=sequence.substr(i,1);
+            fprintf(stdout, "tag, %s\n", tag.c_str());
             int number=atoi(tag.c_str());
+            fprintf(stdout, "number %d\n", number);
             currentSequence.push_back(actions.at(number-1));
-            tag=sequence.substr((sequence.size()-1),1);
-            number=atoi(tag.c_str());
-            currentSequence.push_back(actions.at(number-1));
-        }
-        else
-        {
-            currentSequence.clear();
-            for (unsigned int i=0; i<sequence.size(); i++)
-            {
-                string tag=sequence.substr(i,1);
-                fprintf(stdout, "tag, %s\n", tag.c_str());
-                int number=atoi(tag.c_str());
-                fprintf(stdout, "number %d\n", number);
-                currentSequence.push_back(actions.at(number-1));
-            }
         }
     }
 
@@ -295,14 +280,25 @@ public:
 
         string name=rf.check("name",Value("gestureRecognitionActionPerformer")).asString().c_str();
         string robot=rf.check("robot",Value("icubSim")).asString().c_str();
+        string stereo=rf.check("stereo",Value("off")).asString().c_str();
+        bool useStereo=stereo=="on";
         string rpcName="/"+name+"/rpc";
         string outName="/"+name+"/donePort";
-        memoryUsed=false;//!(rf.check("memoryUsed"));
-        string filename;//=rf.findFile("actions").c_str();
-        if (robot=="icubSim")
-            filename=rf.findFile("actionsSim").c_str();
+        string filename;
+        if (!useStereo)
+        {
+            if (robot=="icubSim")
+                filename=rf.findFile("actionsSim").c_str();
+            else
+                filename=rf.findFile("actions").c_str();
+        }
         else
-            filename=rf.findFile("actions").c_str();
+        {
+            if (robot=="icubSim")
+                filename=rf.findFile("actionsStereoSim").c_str();
+            else
+                filename=rf.findFile("actionsStereo").c_str();
+        }
         out.open(outName.c_str());
 
         if (!createDatabase(filename))
@@ -354,6 +350,8 @@ int main(int argc, char *argv[])
     rf.setDefaultConfigFile("config.ini");
     rf.setDefault("actions","actions.ini");
     rf.setDefault("actionsSim","actionsSim.ini");
+    rf.setDefault("actionsStereo","actionsStereo.ini");
+    rf.setDefault("actionsStereoSim","actionsStereoSim.ini");
     rf.configure(argc,argv);
 
     GestureRecognitionActionPerformer mod;

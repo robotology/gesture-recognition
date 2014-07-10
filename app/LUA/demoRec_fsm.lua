@@ -1,13 +1,22 @@
 
 event_table = {
-   start  = "e_start",
-   rock   = "e_start",
-   turn   = "e_start",
-   lost   = "e_start",
-   over   = "e_start",
-   bye    = "e_exit",
-   save   = "e_start",
-   stop   = "e_start",
+   start     = "e_start",
+   rock      = "e_start",
+   turn      = "e_start",
+   lost      = "e_start",
+   over      = "e_start",
+   bye       = "e_exit",
+   save      = "e_start",
+   stop      = "e_start",
+   one	     = "e_start",
+   two	     = "e_start",
+   three     = "e_start",
+   four	     = "e_start",
+   five	     = "e_start",
+   six	     = "e_start",
+   train     = "e_start",
+   position  = "e_start",
+   recognize = "e_start",
    }
 
 interact_fsm = rfsm.state{
@@ -60,6 +69,24 @@ interact_fsm = rfsm.state{
 						demoRec_actions(demoRec_port,"skip")
 					elseif act == "save" then
 						demoRec_actions(gestRec_port,"save")
+					elseif act == "one" then
+						demoRec_save(gestRec_port,"action1")
+					elseif act == "two" then
+						demoRec_save(gestRec_port,"action2")
+					elseif act == "three" then
+						demoRec_save(gestRec_port,"action3")
+					elseif act == "four" then
+						demoRec_save(gestRec_port,"action4")
+					elseif act == "five" then
+						demoRec_save(gestRec_port,"action5")
+					elseif act == "six" then
+						demoRec_save(gestRec_port,"action6")
+					elseif act == "train" then
+						demoRec_actions(gestRec_port,"train")
+					elseif act == "recognize" then
+						demoRec_actions(gestRec_port,"rec")
+					elseif act == "position" then
+						demoRec_actions(gestRec_port,"pos")
 					elseif act == "stop" then
 						demoRec_actions(gestRec_port,"stop")
 					else
