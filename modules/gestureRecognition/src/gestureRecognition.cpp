@@ -123,7 +123,7 @@ bool GestRecognition::configure(ResourceFinder &rf)
 
     Classifiers=new ModelSVM(context);
     ResourceFinder ActionModelsFile;
-    ActionModelsFile.setDefaultContext("gestureRecognition");
+    ActionModelsFile.setDefaultContext("gesture-recognition");
     ActionModelsFile.setDefaultConfigFile("SVMModels.ini");
     int argc=0; char *argv[1];
     ActionModelsFile.configure(argc,argv);

@@ -422,7 +422,7 @@ int main(int argc, char *argv[])
 
     ResourceFinder rf;
     rf.setVerbose(true);
-    rf.setDefaultContext("gestureRecognition");
+    rf.setDefaultContext("gesture-recognition");
     rf.setDefaultConfigFile("config.ini");
     rf.setDefault("actions","actions.ini");
     rf.setDefault("actionsSim","actionsSim.ini");

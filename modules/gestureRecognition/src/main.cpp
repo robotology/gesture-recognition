@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 
     yarp::os::ResourceFinder rf;
     rf.setVerbose(true);
-    rf.setDefaultContext("gestureRecognition");
+    rf.setDefaultContext("gesture-recognition");
     rf.setDefaultConfigFile("gestureRecognition.ini");
     rf.configure(argc,argv);
 

@@ -3,15 +3,15 @@
 # CopyPolicy: Released under the terms of the GNU GPL v2.0.
 cmake_minimum_required(VERSION 2.8)
 
-set(PROJECTNAME gestureRecognition)
+set(PROJECTNAME gesture-recognition)
 project(${PROJECTNAME})
 
 find_package(YARP REQUIRED)
-find_package(ICUBcontrib REQUIRED)
 find_package(ICUB REQUIRED)
+find_package(ICUBcontrib REQUIRED)
 list(APPEND CMAKE_MODULE_PATH ${YARP_MODULE_PATH}
-                              ${ICUBCONTRIB_MODULE_PATH}
-							  ${ICUB_MODULE_PATH})
+                              ${ICUB_MODULE_PATH}
+                              ${ICUBCONTRIB_MODULE_PATH})
 	
 include(YarpInstallationHelpers) 	
 include(ICUBcontribHelpers)
@@ -32,10 +32,8 @@ set(lua_fsm       ${PROJECT_SOURCE_DIR}/app/LUA/demoRec_funcs.lua
                   ${PROJECT_SOURCE_DIR}/app/LUA/demoRec_root_fsm.lua)
 set(lua_bin       ${PROJECT_SOURCE_DIR}/app/LUA/demoRec_main.lua)
 
-yarp_install(FILES ${scripts} 
-                DESTINATION ${ICUBCONTRIB_APPLICATIONS_TEMPLATES_INSTALL_DIR})
-				
-yarp_install(PROGRAMS  ${lua_fsm} DESTINATION ${ICUBCONTRIB_CONTEXTS_INSTALL_DIR}/${PROJECTNAME}/LUA)
+yarp_install(FILES    ${scripts} DESTINATION ${ICUBCONTRIB_APPLICATIONS_TEMPLATES_INSTALL_DIR})
+yarp_install(PROGRAMS ${lua_fsm} DESTINATION ${ICUBCONTRIB_CONTEXTS_INSTALL_DIR}/${PROJECTNAME}/LUA)
 
 add_custom_target(copy_lua_in_build ALL)
 add_custom_command(TARGET copy_lua_in_build POST_BUILD

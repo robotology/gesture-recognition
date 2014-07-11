@@ -61,7 +61,7 @@ int ModelSVM::getNumActions()
 bool ModelSVM::read()
 {
     yarp::os::ResourceFinder config;
-    config.setDefaultContext("gestureRecognition");
+    config.setDefaultContext("gesture-recognition");
     config.setDefaultConfigFile("SVMModels.ini");
     int argc=0; char *argv[1];
     config.configure(argc,argv);
