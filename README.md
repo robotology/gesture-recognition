@@ -2,21 +2,29 @@ Gesture Recognition
 ==================
 
 This package contains modules that deal with gesture recognition using the Kinect (or Asus Xtion) sensor so as the stereo vision of the iCub. The gestureRecognition module implements a method to recognize gestures from a predefined set (examples of such gestures can be found in `app/conf/supported_actions_easy.jpg` or `app/conf/supported_actions_hard.jpg`). It is independent on the device and the operating system that is being used. Indeed, the `KinectWrapper` library, which is one of its dependencies, already provides an interface that deals with different devices and operating systems. The modules comprised here realize the memory game called [All gestures you can](https://www.youtube.com/watch?v=U_JLoe_fT3I&list=UUXBFWo4IQFkSJBfqdNrE1cA).
+The module gestureRecognitionStereo instead, uses directly the stereo vision capabilities of the iCub robot. In this second case, gestures can be taught to the robot directly. Usually we train the first 5 gestures depicted in `app/conf/supported_actions_easy.jpg`, so that the game [All gestures you can](http://www.youtube.com/watch?v=X4mbYz0JUxM&index=7&list=UUXBFWo4IQFkSJBfqdNrE1cA) can can be played.
 
 ## Installation
 
 ##### Dependencies
 - [YARP](https://github.com/robotology/yarp)
 - [icub-contrib-common](https://github.com/robotology/icub-contrib-common)
-- [kinect-wrapper](https://github.com/robotology/kinect-wrapper.git)
-- [speechRecognizer](https://github.com/robotology/speech)
 - [OpenCV](http://opencv.org/downloads.html)
+
+For the game:
+- [speechRecognizer](https://github.com/robotology/speech)
 - [LUA](http://www.lua.org/download.html)
 
+For gestureRecognition module using Kinect:
+- [kinect-wrapper](https://github.com/robotology/kinect-wrapper.git)
+
+For gestureRecognitionStereo module using stereo vision:
+- [stereo-vision](https://github.com/robotology/stereo-vision)
+- [linearClassifier](https://github.com/robotology/himrep/tree/master/linearClassifierModule)
 Scripts written in LUA are employed to manage the speech recognition part of the demo.
 
 ##### Cmaking the project
-The project is composed of three modules. The gestureRecognition module can be used independently from the others. 
+The project is composed of four modules. The gestureRecognition and gestureRecognitionStereo modules can be used independently from the others. 
 
 ##### Running the gestureRecognition module
 In order to utilize this module, `KinectServer` (coded in [kinect-wrapper](https://github.com/robotology/kinect-wrapper.git)) is to be running.
@@ -42,4 +50,4 @@ The commands that have to be provided are, respectively:
 
 ## License
 
-Material included here is Copyright of _Istituto Italiano di Tecnologia_ and _EFAA Consortium_. gestureRecognition is released under the terms of the GPL v2.0 or later. See the file LICENSE for details.
+Material included here is Copyright of _Istituto Italiano di Tecnologia_ and _EFAA Consortium_. gesture-recognition is released under the terms of the GPL v2.0 or later. See the file LICENSE for details.
