@@ -19,7 +19,7 @@ Scripts written in LUA are employed to manage the speech recognition part of the
 The project is composed of three modules. The gestureRecognition module can be used independently from the others. 
 
 ##### Running the gestureRecognition module
-In order to utilize this module, `KinectServer` (coded in [KinectWrapper](https://github.com/robotology-playground/kinectWrapper.git)) is to be running.
+In order to utilize this module, `KinectServer` (coded in [kinect-wrapper](https://github.com/robotology/kinect-wrapper.git)) is to be running.
 
 ## Architecture of the game
 
