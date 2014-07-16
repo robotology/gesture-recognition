@@ -1,0 +1,50 @@
+\section{action\+Performer}
+\label{group__actionPerformer}\index{action\+Performer@{action\+Performer}}
+
+
+A module that executes gestures specified in a config file as a set of arm joint positions.  
+
+
+A module that executes gestures specified in a config file as a set of arm joint positions. 
+
+\hypertarget{group__gestureRecognitionStereo_intro_sec}{}\subsection{Description}\label{group__gestureRecognitionStereo_intro_sec}
+This module simply allows the robot to perform a set of gestures that can be specified through a set of arm joint positions as in the file app/conf/actions.\+ini.\hypertarget{group__gestureRecognitionStereo_rpc_port}{}\subsection{Commands\+:}\label{group__gestureRecognitionStereo_rpc_port}
+The commands sent as bottles to the module port /$<$mod\+Name$>$/rpc are described in the following\+:
+
+{\bfseries A\+C\+T\+I\+ON} ~\newline
+format\+: \mbox{[}action\mbox{]} $<$id$>$ ~\newline
+action\+: the module receives the gesture I\+Ds to be performed and execute them.
+
+{\bfseries S\+T\+OP} ~\newline
+format\+: \mbox{[}stop\mbox{]} ~\newline
+action\+: the module stops executing the sequence.\hypertarget{group__gestureRecognitionStereo_lib_sec}{}\subsection{Libraries}\label{group__gestureRecognitionStereo_lib_sec}
+
+\begin{DoxyItemize}
+\item Y\+A\+RP libraries.
+\end{DoxyItemize}\hypertarget{group__gestureRecognitionStereo_portsc_sec}{}\subsection{Ports Created}\label{group__gestureRecognitionStereo_portsc_sec}
+
+\begin{DoxyItemize}
+\item {\itshape /} $<$mod\+Name$>$/rpc remote procedure call. It always replies something.
+\item {\itshape /} $<$mod\+Name$>$/out through this port the modules outputs when the execution of the sequence has finished.
+\end{DoxyItemize}\hypertarget{group__gestureRecognitionStereo_parameters_sec}{}\subsection{Parameters}\label{group__gestureRecognitionStereo_parameters_sec}
+The following are the options that are usually contained in the configuration file, which is config.\+ini\+:
+
+--name {\itshape name} 
+\begin{DoxyItemize}
+\item specify the module name, which is {\itshape action\+Performer} by default.
+\end{DoxyItemize}
+
+--robot {\itshape robot} 
+\begin{DoxyItemize}
+\item the robot that should execute the gestures.
+\end{DoxyItemize}
+
+--stereo {\itshape stereo} 
+\begin{DoxyItemize}
+\item it is on when the gesture recognition module based on stereo is being used.
+\end{DoxyItemize}\hypertarget{group__gestureRecognitionStereo_tested_os_sec}{}\subsection{Tested OS}\label{group__gestureRecognitionStereo_tested_os_sec}
+Windows, Linux
+
+\begin{DoxyAuthor}{Author}
+Ilaria Gori, Sean Ryan Fanello 
+\end{DoxyAuthor}

@@ -1,0 +1,124 @@
+\section{gesture\+Recognition\+Stereo}
+\label{group__gestureRecognitionStereo}\index{gesture\+Recognition\+Stereo@{gesture\+Recognition\+Stereo}}
+
+
+A module that trains and recognizes gestures in real-\/time using 3\+D\+H\+OF and H\+OG descriptors and linear S\+V\+Ms as classifiers.  
+
+
+A module that trains and recognizes gestures in real-\/time using 3\+D\+H\+OF and H\+OG descriptors and linear S\+V\+Ms as classifiers. 
+
+\hypertarget{group__gestureRecognitionStereo_intro_sec}{}\subsection{Description}\label{group__gestureRecognitionStereo_intro_sec}
+This module is able to train and recognize in real-\/time different gestures. 3\+D\+H\+OF and pyramid-\/\+H\+OG are used as descriptors.\hypertarget{group__gestureRecognitionStereo_rpc_port}{}\subsection{Commands\+:}\label{group__gestureRecognitionStereo_rpc_port}
+The commands sent as bottles to the module port /$<$mod\+Name$>$/rpc are described in the following\+:
+
+{\bfseries I\+N\+I\+T\+I\+A\+L\+\_\+\+P\+O\+S\+I\+T\+I\+ON} ~\newline
+format\+: \mbox{[}pos\mbox{]} ~\newline
+action\+: since we don\textquotesingle{}t have skeleton information in this case, we need to work using the difference between an initial status and the subsequent frames to retrieve information on where the gesture is happening. To this end, this command save the current frame as the initial position, which the successive frames will be compared with.
+
+{\bfseries S\+ET} ~\newline
+format\+: \mbox{[}set param\mbox{]} ~\newline
+action\+: param can be value or threshold. For an initial background removal, it is possible to set a depth value and a threshold that allows setting to 0 all the pixels that are closer than value+threshold and that are farther than value-\/threshold.
+
+{\bfseries S\+A\+VE} ~\newline
+format\+: \mbox{[}save param\mbox{]} ~\newline
+action\+: this command allows saving in the linear\+Classifier\+Module all the features from this moment until S\+T\+OP is commanded. The descriptors are directly saved in a folder called actionX, where X=param is an integer.
+
+{\bfseries T\+R\+A\+IN} ~\newline
+format\+: \mbox{[}train\mbox{]} ~\newline
+action\+: all the descriptors saved so far are fed into the linear\+Classifier\+Module and support vector machines are trained accordingly.
+
+{\bfseries R\+EC} ~\newline
+format\+: \mbox{[}rec\mbox{]} ~\newline
+action\+: the module starts to recognize any action that is being performed.
+
+{\bfseries W\+R\+I\+TE} ~\newline
+format\+: \mbox{[}write\mbox{]} ~\newline
+action\+: the module starts saving features on a .txt file located in the directory specified as out\+Dir in the Resource\+Finder.
+
+{\bfseries S\+T\+OP} ~\newline
+format\+: \mbox{[}stop\mbox{]} ~\newline
+action\+: the module stops recognizing or saving.\hypertarget{group__gestureRecognitionStereo_lib_sec}{}\subsection{Libraries}\label{group__gestureRecognitionStereo_lib_sec}
+
+\begin{DoxyItemize}
+\item Y\+A\+RP libraries.
+\item stereo-\/vision library.
+\item Open\+CV library.
+\end{DoxyItemize}\hypertarget{group__gestureRecognitionStereo_portsc_sec}{}\subsection{Ports Created}\label{group__gestureRecognitionStereo_portsc_sec}
+
+\begin{DoxyItemize}
+\item {\itshape /} $<$mod\+Name$>$/rpc remote procedure call. It always replies something.
+\item {\itshape /} $<$mod\+Name$>$/scores\+:i this is the port where the linear\+Classifier\+Module replies the gesture that has been recognized at every frame.
+\item {\itshape /} $<$mod\+Name$>$/features\+:o this port outputs the features to be sent to the linear\+Classifier\+Module.
+\item {\itshape /} $<$mod\+Name$>$/classifier\+:rpc this port sends rpc commands like train or save to the linear\+Classifier\+Module.
+\item {\itshape /} $<$mod\+Name$>$/scores\+:o this port sends the game\+Manager the gestures that have been recognized.
+\item {\itshape /} $<$mod\+Name$>$/ispeak this port sends sentences to i\+Speak.
+\item {\itshape /} $<$mod\+Name$>$/depth this port sends the segmented depth image.
+\end{DoxyItemize}\hypertarget{group__gestureRecognitionStereo_parameters_sec}{}\subsection{Parameters}\label{group__gestureRecognitionStereo_parameters_sec}
+The following are the options that are usually contained in the configuration file, which is gesture\+Recognition.\+ini\+:
+
+--name {\itshape name} 
+\begin{DoxyItemize}
+\item specify the module name, which is {\itshape gesture\+Recognition\+Stereo} by default.
+\end{DoxyItemize}
+
+--robot {\itshape robot} 
+\begin{DoxyItemize}
+\item specify the robot to be used,  by default.
+\end{DoxyItemize}
+
+--H\+O\+Fnbins {\itshape H\+O\+Fnbins} 
+\begin{DoxyItemize}
+\item number of bins for the 3D histogram of flow. The final histogram will be H\+O\+Fnbins$\ast$\+H\+O\+Fnbins$\ast$\+H\+O\+Fnbins. H\+O\+Fnbins is equal to 5 by default.
+\end{DoxyItemize}
+
+--H\+O\+Gnbins {\itshape H\+O\+Gnbins} 
+\begin{DoxyItemize}
+\item number of bins for the H\+OG. It is 128 by default.
+\end{DoxyItemize}
+
+--H\+O\+Glevels {\itshape H\+O\+Glevels} 
+\begin{DoxyItemize}
+\item number of levels of the pyramid H\+OG. 3 by default.
+\end{DoxyItemize}
+
+--pool {\itshape pool} 
+\begin{DoxyItemize}
+\item pooling strategy. can be \char`\"{}concatenate\char`\"{} or \char`\"{}max\char`\"{}. "concatenate is usually used, especially if a dictionary is not specified.
+\end{DoxyItemize}
+
+-- out\+Dir {\itshape out\+Dir} 
+\begin{DoxyItemize}
+\item folder where the features will be saved, if the write command is sent to the rpc port.
+\end{DoxyItemize}
+
+-- dictionary {\itshape dictionary} 
+\begin{DoxyItemize}
+\item if this is true, a dictionary will be used. In this case the dictionary is specified in another config file.
+\end{DoxyItemize}
+
+-- threshold {\itshape threshold} 
+\begin{DoxyItemize}
+\item threshold on the value of the depth that is given.
+\end{DoxyItemize}
+
+-- value {\itshape value} 
+\begin{DoxyItemize}
+\item depth value at which the person should be moving.
+\end{DoxyItemize}
+
+-- config\+\_\+disparity {\itshape config\+\_\+disparity} 
+\begin{DoxyItemize}
+\item file where the disparity information is stored. It is icub\+Eyes.\+ini by default.
+\end{DoxyItemize}
+
+If a dictionary is specified, there exist two other config files\+: dictionary\+\_\+hog.\+ini and dictionary\+\_\+flow.\+ini. Both of them have a G\+E\+N\+E\+R\+AL group that contains\+:
+
+-- dictionary\+Size {\itshape dictionary\+Size} 
+\begin{DoxyItemize}
+\item file where the disparity information is stored. It is icub\+Eyes.\+ini by default.
+\end{DoxyItemize}\hypertarget{group__gestureRecognitionStereo_tested_os_sec}{}\subsection{Tested OS}\label{group__gestureRecognitionStereo_tested_os_sec}
+Windows, Linux
+
+\begin{DoxyAuthor}{Author}
+Ilaria Gori, Sean Ryan Fanello 
+\end{DoxyAuthor}

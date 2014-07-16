@@ -1,0 +1,77 @@
+\section{game\+Manager}
+\label{group__gameManager}\index{game\+Manager@{game\+Manager}}
+
+
+The module that implements the rules of All Gestures You Can game.  
+
+
+The module that implements the rules of All Gestures You Can game. 
+
+It manages the interactions between gesture\+Recognition and action\+Performer module.\hypertarget{group__gestureRecognitionStereo_intro_sec}{}\subsection{Description}\label{group__gestureRecognitionStereo_intro_sec}
+This module manages the interactions between gesture\+Recognition and action\+Performer modules. It keeps track of the turns between the human and the robot, and communicates with both the recognition and the performer modules.\hypertarget{group__gestureRecognitionStereo_rpc_port}{}\subsection{Commands\+:}\label{group__gestureRecognitionStereo_rpc_port}
+The commands sent as bottles to the module port /$<$mod\+Name$>$/rpc are described in the following\+:
+
+{\bfseries S\+A\+VE} ~\newline
+format\+: \mbox{[}save param\mbox{]} ~\newline
+action\+: this command serves to save all the features in the linear classifier module, for the successive training procedure. param can be a number from 1 to the number of actions that you want to train. This command is used only when the gesture\+Recognition\+Stereo module is running, it is not valid for the gesture\+Recognition using kinect.
+
+{\bfseries T\+R\+A\+I\+N\+ED} ~\newline
+format\+: \mbox{[}trained\mbox{]} ~\newline
+action\+: this command is needed to let the linear\+Classifier\+Module train all the gestures saved so far. This command also is valid only for the gesture\+Recognition\+Stereo module, not for the one using kinect.
+
+{\bfseries S\+T\+A\+RT} ~\newline
+format\+: \mbox{[}start\mbox{]} ~\newline
+action\+: through this command the game starts. The module chooses the opponent that should start performing a gesture.
+
+{\bfseries W\+IN} ~\newline
+format\+: \mbox{[}win\mbox{]} ~\newline
+action\+: this command just communicates that the robot has won and terminates the game.
+
+{\bfseries L\+O\+SE} ~\newline
+format\+: \mbox{[}lose\mbox{]} ~\newline
+action\+: this command just communicates that the robot has lost and terminates the game.
+
+{\bfseries O\+V\+ER} ~\newline
+format\+: \mbox{[}over\mbox{]} ~\newline
+action\+: this command forcely terminates the game.
+
+{\bfseries D\+O\+NE} ~\newline
+format\+: \mbox{[}done\mbox{]} ~\newline
+action\+: this is to notify that the robot has just finished performing the sequence, so it\textquotesingle{}s time for the human to replicate the gestures.
+
+{\bfseries T\+U\+RN} ~\newline
+format\+: \mbox{[}turn\mbox{]} ~\newline
+action\+: this is to notify the robot that the human has just finished performing the sequence, so it\textquotesingle{}s time for the robot to replicate the gestures.\hypertarget{group__gestureRecognitionStereo_lib_sec}{}\subsection{Libraries}\label{group__gestureRecognitionStereo_lib_sec}
+
+\begin{DoxyItemize}
+\item Y\+A\+RP libraries.
+\end{DoxyItemize}\hypertarget{group__gestureRecognitionStereo_portsc_sec}{}\subsection{Ports Created}\label{group__gestureRecognitionStereo_portsc_sec}
+
+\begin{DoxyItemize}
+\item {\itshape /} $<$mod\+Name$>$/rpc remote procedure call. It always replies something.
+\item {\itshape /} $<$mod\+Name$>$/performer\+:o it sends the sequence to perform to the action\+Performer module.
+\item {\itshape /} $<$mod\+Name$>$/gest\+Rec\+:o it sends command to the gesture\+Recognition module.
+\item {\itshape /} $<$mod\+Name$>$/scores\+:i this port reads the recognized gestures.
+\item {\itshape /} $<$mod\+Name$>$/outspeak this port sends sentences to the i\+Speak module.
+\end{DoxyItemize}\hypertarget{group__gestureRecognitionStereo_parameters_sec}{}\subsection{Parameters}\label{group__gestureRecognitionStereo_parameters_sec}
+The following are the options that are usually contained in the configuration file, which is config.\+ini\+:
+
+--name {\itshape name} 
+\begin{DoxyItemize}
+\item specify the module name, which is {\itshape game\+Manager} by default.
+\end{DoxyItemize}
+
+--robot {\itshape robot} 
+\begin{DoxyItemize}
+\item the robot that should execute the gestures.
+\end{DoxyItemize}
+
+--stereo {\itshape stereo} 
+\begin{DoxyItemize}
+\item it is on when the gesture recognition module based on stereo is being used.
+\end{DoxyItemize}\hypertarget{group__gestureRecognitionStereo_tested_os_sec}{}\subsection{Tested OS}\label{group__gestureRecognitionStereo_tested_os_sec}
+Windows, Linux
+
+\begin{DoxyAuthor}{Author}
+Ilaria Gori, Sean Ryan Fanello 
+\end{DoxyAuthor}
