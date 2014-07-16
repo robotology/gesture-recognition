@@ -20,7 +20,7 @@ For gestureRecognition module using Kinect:
 
 For gestureRecognitionStereo module using stereo vision:
 - [stereo-vision](https://github.com/robotology/stereo-vision)
-- [linearClassifier](https://github.com/robotology/himrep/tree/master/linearClassifierModule)
+- [Hierarchical Image Representation](https://github.com/robotology/himrep)
 Scripts written in LUA are employed to manage the speech recognition part of the demo.
 
 ##### Cmaking the project
