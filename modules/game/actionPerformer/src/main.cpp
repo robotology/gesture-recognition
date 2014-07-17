@@ -1,3 +1,73 @@
+/*
+ * Copyright (C) 2013 EFAA Consortium, European Commission FP7 Project IST-270490
+ * Authors: Ilaria Gori, Sean Ryan Fanello
+ * email:   ilaria.gori@iit.it, sean.fanello@iit.it
+ * website: http://efaa.upf.edu/
+ * Permission is granted to copy, distribute, and/or modify this program
+ * under the terms of the GNU General Public License, version 2 or any
+ * later version published by the Free Software Foundation.
+ *
+ * A copy of the license can be found at
+ * $EFAA_ROOT/license/gpl.txt
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+ * Public License for more details
+ */
+
+/** 
+@ingroup robotology
+\defgroup actionPerformer actionPerformer
+
+A module that executes gestures specified in a config file as a set of arm joint positions.
+
+\section intro_sec Description 
+This module simply allows the robot to perform a set of gestures that can be
+specified through a set of arm joint positions as in the file app/conf/actions.ini. 
+ 
+\section rpc_port Commands:
+The commands sent as bottles to the module port /<modName>/rpc
+are described in the following:
+
+<b>ACTION</b> \n
+format: [action] \n
+action: the module receives the gesture IDs to be performed and execute them.
+
+<b>STOP</b> \n
+format: [stop] \n
+action: the module stops executing the sequence.
+
+\section lib_sec Libraries 
+- YARP libraries. 
+
+\section portsc_sec Ports Created 
+
+- \e /<modName>/rpc remote procedure call. It always replies something.
+- \e /<modName>/out through this port the modules outputs when the execution
+  of the sequence has finished.
+
+\section parameters_sec Parameters 
+The following are the options that are usually contained 
+in the configuration file, which is config.ini:
+
+--name \e name
+- specify the module name, which is \e actionPerformer by 
+  default.
+
+--robot \e robot
+- the robot that should execute the gestures.
+
+--stereo \e stereo
+- it is on when the gesture recognition module based on stereo
+  is being used.
+
+\section tested_os_sec Tested OS
+Windows, Linux
+
+\author Ilaria Gori, Sean Ryan Fanello
+**/
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -77,7 +147,7 @@ protected:
 
     bool respond(const Bottle& cmd, Bottle& reply) 
     {
-        if (cmd.get(0).asString()=="recognize")
+        if (cmd.get(0).asString()=="action")
         {
             if (!executing)
             {
@@ -278,12 +348,12 @@ public:
         closing=false;
         toll=5.0;
 
-        string name=rf.check("name",Value("gestureRecognitionActionPerformer")).asString().c_str();
+        string name=rf.check("name",Value("actionPerformer")).asString().c_str();
         string robot=rf.check("robot",Value("icubSim")).asString().c_str();
         string stereo=rf.check("stereo",Value("off")).asString().c_str();
         bool useStereo=stereo=="on";
         string rpcName="/"+name+"/rpc";
-        string outName="/"+name+"/donePort";
+        string outName="/"+name+"/out";
         string filename;
         if (!useStereo)
         {

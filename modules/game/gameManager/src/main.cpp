@@ -1,3 +1,113 @@
+/*
+ * Copyright (C) 2013 EFAA Consortium, European Commission FP7 Project IST-270490
+ * Authors: Ilaria Gori, Sean Ryan Fanello
+ * email:   ilaria.gori@iit.it, sean.fanello@iit.it
+ * website: http://efaa.upf.edu/
+ * Permission is granted to copy, distribute, and/or modify this program
+ * under the terms of the GNU General Public License, version 2 or any
+ * later version published by the Free Software Foundation.
+ *
+ * A copy of the license can be found at
+ * $EFAA_ROOT/license/gpl.txt
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+ * Public License for more details
+ */
+
+/** 
+@ingroup robotology
+\defgroup gameManager gameManager
+
+The module that implements the rules of All Gestures You Can game. It manages the
+interactions between gestureRecognition and actionPerformer module.
+
+\section intro_sec Description 
+This module manages the interactions between gestureRecognition and actionPerformer 
+modules. It keeps track of the turns between the human and the robot, and communicates
+with both the recognition and the performer modules.
+ 
+\section rpc_port Commands:
+The commands sent as bottles to the module port /<modName>/rpc
+are described in the following:
+
+<b>SAVE</b> \n
+format: [save param] \n
+action: this command serves to save all the features in the linear classifier
+module, for the successive training procedure. param can be a number from 1 to 
+the number of actions that you want to train. This command is used only when the 
+gestureRecognitionStereo module is running, it is not valid for the gestureRecognition
+using kinect.
+
+<b>TRAINED</b> \n
+format: [trained] \n
+action: this command is needed to let the linearClassifierModule train all the
+gestures saved so far. This command also is valid only for the gestureRecognitionStereo
+module, not for the one using kinect.
+
+<b>START</b> \n
+format: [start] \n
+action: through this command the game starts. The module chooses the opponent that
+should start performing a gesture.
+
+<b>WIN</b> \n
+format: [win] \n
+action: this command just communicates that the robot has won and terminates the game.
+
+<b>LOSE</b> \n
+format: [lose] \n
+action: this command just communicates that the robot has lost and terminates
+the game.
+
+<b>OVER</b> \n
+format: [over] \n
+action: this command forcely terminates the game.
+
+<b>DONE</b> \n
+format: [done] \n
+action: this is to notify that the robot has just finished performing
+the sequence, so it's time for the human to replicate the gestures.
+
+<b>TURN</b> \n
+format: [turn] \n
+action: this is to notify the robot that the human has just finished
+performing the sequence, so it's time for the robot to replicate
+the gestures.
+
+\section lib_sec Libraries 
+- YARP libraries. 
+
+\section portsc_sec Ports Created 
+
+- \e /<modName>/rpc remote procedure call. It always replies something.
+- \e /<modName>/performer:o it sends the sequence to perform to the actionPerformer
+  module.
+- \e /<modName>/gest_rec:o it sends command to the gestureRecognition module.
+- \e /<modName>/in this port reads the recognized gestures.
+- \e /<modName>/outspeak this port sends sentences to the iSpeak module.
+
+\section parameters_sec Parameters 
+The following are the options that are usually contained 
+in the configuration file, which is config.ini:
+
+--name \e name
+- specify the module name, which is \e gameManager by 
+  default.
+
+--robot \e robot
+- the robot that should execute the gestures.
+
+--stereo \e stereo
+- it is on when the gesture recognition module based on stereo
+  is being used.
+
+\section tested_os_sec Tested OS
+Windows, Linux
+
+\author Ilaria Gori, Sean Ryan Fanello
+**/
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -256,7 +366,7 @@ protected:
             currentSequence=currentSequence+action.str();
 
             Bottle cmd,reply;
-            cmd.addString("recognize");
+            cmd.addString("action");
             cmd.addInt(atoi(sequence.c_str()));
             outPerformer.write(cmd,reply);
             myturn=false;
@@ -372,7 +482,7 @@ protected:
 public:
     bool configure(ResourceFinder &rf)
     {
-        string name="gestureRecognitionGameManager";
+        string name=rf.check("name",Value("gameManager")).asString().c_str();
         rpc.open(("/"+name+"/rpc").c_str());
         attach(rpc);
         outPerformer.open(("/"+name+"/performer:o").c_str());

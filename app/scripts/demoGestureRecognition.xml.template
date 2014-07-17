@@ -21,15 +21,15 @@
 	</module>
 
 	<module>
-		<name>gestureRecognitionActionPerformer</name>
+		<name>actionPerformer</name>
 		<node>node3</node>
-		<tag>gestureRecognitionActionPerformerTag</tag>
+		<tag>actionPerformerTag</tag>
 	</module>
 
 	<module>
-		<name>gestureRecognitionGameManager</name>
+		<name>gameManager</name>
 		<node>node4</node>
-		<tag>gestureRecognitionGameManagerTag</tag>
+		<tag>gameManagerTag</tag>
 	</module>
 
 	<module>
@@ -47,24 +47,24 @@
 
 	<connection>
 		<from>/gestureRecognition/scores</from>
-		<to>/gestureRecognitionGameManager/in</to>
+		<to>/gameManager/in</to>
 		<protocol>tcp</protocol>
 	</connection>
 
 	<connection>
-		<from>/gestureRecognitionActionPerformer/donePort</from>
-		<to>/gestureRecognitionGameManager/rpc</to>
+		<from>/actionPerformer/out</from>
+		<to>/gameManager/rpc</to>
 		<protocol>tcp</protocol>
 	</connection>
 
 	<connection>
-		<from>/gestureRecognitionGameManager/out</from>
-		<to>/gestureRecognitionActionPerformer/rpc</to>
+		<from>/gameManager/out</from>
+		<to>/actionPerformer/rpc</to>
 		<protocol>tcp</protocol>
 	</connection>
 
 	<connection>
-		<from>/gestureRecognitionGameManager/outspeak</from>
+		<from>/gameManager/outspeak</from>
 		<to>/iSpeak</to>
 		<protocol>tcp</protocol>
 	</connection>

@@ -17,5 +17,5 @@ else()
 	message("stereoVision has not been found, gestureRecognitionStereo will not be compiled")
 endif()
 
-add_subdirectory(game/gestureRecognitionActionPerformer)
-add_subdirectory(game/gestureRecognitionGameManager)
+add_subdirectory(game/actionPerformer)
+add_subdirectory(game/gameManager)

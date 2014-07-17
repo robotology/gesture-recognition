@@ -48,6 +48,10 @@ The commands that have to be provided are, respectively:
 - **"Game over"**, to quit the game straight away.
 - **"Good bye"**, to close the LUA application. 
 
+## Documentation
+
+Online documentation is available here: [http://robotology.github.com/gesture-recognition](http://robotology.github.com/gesture-recognition).
+
 ## License
 
 Material included here is Copyright of _Istituto Italiano di Tecnologia_ and _EFAA Consortium_. gesture-recognition is released under the terms of the GPL v2.0 or later. See the file LICENSE for details.

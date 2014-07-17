@@ -3,7 +3,7 @@
 # CopyPolicy: Released under the terms of the GNU GPL v2.0.
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
-set(PROJECTNAME gestureRecognitionGameManager)
+set(PROJECTNAME gameManager)
 project(${PROJECTNAME})
 
 set(sources src/main.cpp)
