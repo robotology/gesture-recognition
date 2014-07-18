@@ -20,7 +20,7 @@
 @ingroup robotology
 \defgroup gestureRecognition gestureRecognition
 
-A module that recognizes gestures belonging to a predefined set using 3DHOF
+A module that recognizes in real-time gestures belonging to a predefined set using 3DHOF
 and HOG descriptors and linear SVMs as classifiers.
 
 \section intro_sec Description 
@@ -41,7 +41,7 @@ are described in the following:
 
 <b>REC</b> \n
 format: [rec] \n
-action: the module starts to recognize any action that has being performed.
+action: the module starts to recognize any action that is being performed.
 
 <b>SAVE</b> \n
 format: [save] \n

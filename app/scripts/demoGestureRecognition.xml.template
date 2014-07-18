@@ -1,6 +1,6 @@
 
 <application>
-<name>All Gestures You Can</name>
+<name>Demo Gesture Recognition</name>
 
 	<dependencies>
 		<port>/kinectServer/depth:o</port>
@@ -34,20 +34,20 @@
 
 	<module>
 		<name>yarpview</name>
-		<parameters>--name /skeleton</parameters>
+		<parameters>--name /demoGestureRecognition/skeleton</parameters>
 		<node>node5</node>
 		<tag>depth</tag>
 	</module>
 
 	<connection>
 		<from>/gestureRecognition/images</from>
-		<to>/skeleton</to>
+		<to>/demoGestureRecognition/skeleton</to>
 		<protocol>udp</protocol>
 	</connection>
 
 	<connection>
 		<from>/gestureRecognition/scores</from>
-		<to>/gameManager/in</to>
+		<to>/gameManager/scores:i</to>
 		<protocol>tcp</protocol>
 	</connection>
 

@@ -83,8 +83,8 @@ the gestures.
 - \e /<modName>/rpc remote procedure call. It always replies something.
 - \e /<modName>/performer:o it sends the sequence to perform to the actionPerformer
   module.
-- \e /<modName>/gest_rec:o it sends command to the gestureRecognition module.
-- \e /<modName>/in this port reads the recognized gestures.
+- \e /<modName>/gestRec:o it sends command to the gestureRecognition module.
+- \e /<modName>/scores:i this port reads the recognized gestures.
 - \e /<modName>/outspeak this port sends sentences to the iSpeak module.
 
 \section parameters_sec Parameters 
@@ -486,10 +486,9 @@ public:
         rpc.open(("/"+name+"/rpc").c_str());
         attach(rpc);
         outPerformer.open(("/"+name+"/performer:o").c_str());
-        outGestRec.open(("/"+name+"/gest_rec:o").c_str());
-        inSequence.open(("/"+name+"/in").c_str());
-        string outspeakname="/"+name+"/outspeak";
-        outspeak.open(outspeakname.c_str());
+        outGestRec.open(("/"+name+"/gestRec:o").c_str());
+        inSequence.open(("/"+name+"/scores:i").c_str());
+        outspeak.open(("/"+name+"/outspeak").c_str());
         attSelRpc.open(("/"+name+"/attsel:rpc").c_str());
 
         sequence="";

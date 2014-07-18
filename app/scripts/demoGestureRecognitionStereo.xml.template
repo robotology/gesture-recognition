@@ -1,0 +1,108 @@
+
+<application>
+<name>Demo Gesture Recognition Stereo</name>
+
+		<module>
+			<name>iSpeak</name>
+			<node>icub15</node>
+			<tag>iSpeakTag</tag>
+        </module>
+		
+		<module>
+			<name>actionPerformer</name>
+			<node>icub-b11</node>
+			<tag>actionPerformerTag</tag>
+        </module>
+		
+		<module>
+			<name>gameManager</name>
+			<node>icub-b12</node>
+			<tag>gameManagerTag</tag>
+        </module>
+		
+		<module>
+			<name>speechRecognizer</name>
+			<node>icub-win1</node>
+			<tag>speechRecognizerTag</tag>
+        </module>
+		
+		<module>
+			<name>linearClassifierModule</name>
+			<parameters>--BufferSize 1 --databaseFolder DBActions --CSVM 0.1</parameters>
+			<node>icub15</node>
+			<tag>speechRecognizerTag</tag>
+        </module>
+		
+		<module>
+			<name>yarpview --name /demoGestureRecognition/disparityViewer</name>
+			<node>icub16</node>
+			<tag>yarpviewTag</tag>
+        </module>
+		
+		<connection>
+            <from>/gestureRecognitionStereo/depth</from>
+            <to>/demoGestureRecognition/disparityViewer</to>
+            <protocol>tcp</protocol>
+        </connection>
+		
+		<connection>
+            <from>/icub/camcalib/right/out</from>
+            <to>/gestureRecognitionStereo/img/right</to>
+            <protocol>tcp</protocol>
+        </connection>
+		
+		<connection>
+            <from>/icub/camcalib/left/out</from>
+            <to>/gestureRecognitionStereo/img/left</to>
+            <protocol>tcp</protocol>
+        </connection>
+		
+		<connection>
+            <from>/gestureRecognitionStereo/classifier:rpc</from>
+            <to>/linearClassifier/rpc</to>
+            <protocol>tcp</protocol>
+        </connection>
+		
+		<connection>
+            <from>/gestureRecognitionStereo/features:o</from>
+            <to>/linearClassifier/features:i</to>
+            <protocol>tcp</protocol>
+        </connection>
+		
+		<connection>
+            <from>/linearClassifier/scores:o</from>
+            <to>/gestureRecognitionStereo/scores:i</to>
+            <protocol>tcp</protocol>
+        </connection>
+		
+        <connection>
+            <from>/gestureRecognitionStereo/scores:o</from>
+            <to>/gameManager/scores:i</to>
+            <protocol>tcp</protocol>
+        </connection>
+		
+		<connection>
+            <from>/gameManager/gestRec:o</from>
+            <to>/gestureRecognitionStereo/rpc</to>
+            <protocol>tcp</protocol>
+        </connection>
+		
+		<connection>
+            <from>/actionPerformer/out</from>
+            <to>/gameManager/rpc</to>
+            <protocol>tcp</protocol>
+        </connection>
+		
+		<connection>
+            <from>/gameManager/performer:o</from>
+            <to>/actionPerformer/rpc</to>
+            <protocol>tcp</protocol>
+        </connection>
+		
+		<connection>
+            <from>/gameManager/outspeak</from>
+            <to>/iSpeak</to>
+            <protocol>tcp</protocol>
+        </connection>
+
+</application>

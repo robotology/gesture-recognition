@@ -50,41 +50,33 @@ GestRecognition::GestRecognition()
 bool GestRecognition::configure(ResourceFinder &rf)
 {
     string robot=rf.check("robot",Value("icub")).asString().c_str();
-    string name=rf.check("name",Value("gest_rec")).asString().c_str();
-    string imL=rf.check("imL",Value("/leftPort")).asString().c_str();
-    string imR=rf.check("imR",Value("/rightPort")).asString().c_str();
-    string rpcName=rf.check("rpcName",Value("/gest_rec/rpc")).asString().c_str();
-    string dispName=rf.check("dispPort",Value("/gest_rec/dispPort")).asString().c_str();
-    string optName=rf.check("optPort",Value("/gest_rec/optPort")).asString().c_str();
+    string name=rf.check("name",Value("gestureRecognitionStereo")).asString().c_str();
     useDictionary=rf.check("dictionary");
-    printf("usedictionary %s\n", useDictionary?"true":"false");
     threshold=rf.check("threshold",Value(50)).asInt();
     value=rf.check("value",Value(80)).asInt();
     context=rf.getHomeContextPath();
 
     outDir=rf.check("outDir",Value("/tmp/dataAction/")).asString().c_str();
 
-    rpc.open(rpcName.c_str());
+    rpc.open(("/"+name+"/rpc").c_str());
     attach(rpc);
 
     featureOutput.open(("/"+name+"/features:o").c_str());
     scoresInput.open(("/"+name+"/scores:i").c_str());
-    rpcClassifier.open(("/"+name+"/classify:rpc").c_str());
-    out.open(("/"+name+"/scores").c_str());
+    rpcClassifier.open(("/"+name+"/classifier:rpc").c_str());
+    out.open(("/"+name+"/scores:o").c_str());
     outSpeak.open(("/"+name+"/ispeak").c_str());
-    outImage.open(("/"+name+"/outImage").c_str());
-
-    imagePortInLeft.open(imL.c_str());
-    imagePortInRight.open(imR.c_str());
-    dispPort.open(dispName.c_str());
-    optPort.open(optName.c_str());
+    outImage.open(("/"+name+"/depth").c_str());
+    imagePortInLeft.open(("/"+name+"/img/left").c_str());
+    imagePortInRight.open(("/"+name+"/img/right").c_str());
+    
 
     imageL=new ImageOf<PixelRgb>;
     imageR=new ImageOf<PixelRgb>;
     init=true;
     initL=initR=false;
 
-    string configFileDisparity=rf.check("ConfigDisparity",Value("icubEyes.ini")).asString().c_str();
+    string configFileDisparity=rf.check("config_disparity",Value("icubEyes.ini")).asString().c_str();
 
     ResourceFinder cameraFinder;
     cameraFinder.setDefaultContext("cameraCalibration");
@@ -181,10 +173,6 @@ bool GestRecognition::close()
     imagePortInLeft.close();
     imagePortInRight.interrupt();
     imagePortInRight.close();
-    dispPort.interrupt();
-    dispPort.close();
-    optPort.interrupt();
-    optPort.close();
 
     if(outDisp!=NULL)
         cvReleaseImage(&outDisp);
