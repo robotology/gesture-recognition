@@ -23,7 +23,7 @@ grammar = "Let's start | You rock | You lost | Your turn | Game over | Good bye 
 
 -- load state machine model and initalize it
 rf = yarp.ResourceFinder()
-rf:setDefaultContext("demoGestureRecognition/LUA")
+rf:setDefaultContext("gesture-recognition/LUA")
 rf:configure(arg)
 fsm_file = rf:findFile("demoRec_root_fsm.lua")
 fsm_model = rfsm.load(fsm_file)

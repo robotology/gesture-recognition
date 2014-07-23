@@ -1,6 +1,6 @@
 
 <application>
-<name>All Gestures You Can Dependencies</name>
+<name>Demo Gesture Recognition Dependencies</name>
 
 	<module>
 		<name>speechRecognizer</name>

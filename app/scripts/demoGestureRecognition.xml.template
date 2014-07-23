@@ -8,6 +8,7 @@
 
 	<module>
 		<name>iSpeak</name>
+        <parameters>--package acapelacmd</parameters>
 		<node>node1</node>
 		<tag>iSpeakTag</tag>
 	</module>
@@ -22,12 +23,14 @@
 
 	<module>
 		<name>actionPerformer</name>
+        <parameters>--stereo off</parameters>
 		<node>node3</node>
 		<tag>actionPerformerTag</tag>
 	</module>
 
 	<module>
 		<name>gameManager</name>
+		<parameters>--stereo off</parameters>
 		<node>node4</node>
 		<tag>gameManagerTag</tag>
 	</module>
@@ -38,6 +41,17 @@
 		<node>node5</node>
 		<tag>depth</tag>
 	</module>
+
+    <module>
+        <name>demoRec_main.lua</name>
+        <deployer>lua</deployer>
+        <node>console</node>
+        <dependencies>
+            <port timeout="10">/iSpeak</port>
+            <port timeout="10">/speechRecognizer/rpc</port>
+            <port timeout="10">/gameManager/rpc</port>
+        </dependencies>
+    </module>
 
 	<connection>
 		<from>/gestureRecognition/images</from>

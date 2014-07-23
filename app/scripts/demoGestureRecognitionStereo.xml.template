@@ -4,19 +4,30 @@
 
 		<module>
 			<name>iSpeak</name>
-			<node>icub15</node>
+            <parameters>--package acapelacmd</parameters>
+			<node>icub-win1</node>
 			<tag>iSpeakTag</tag>
         </module>
+
+
+      	<module>
+		    <name>gestureRecognitionStereo</name>
+		    <node>node2</node>
+		    <stdio>node2</stdio>
+		    <tag>gestureRecognitionTag</tag>
+    	</module>
 		
 		<module>
 			<name>actionPerformer</name>
-			<node>icub-b11</node>
+            <parameters>--stereo on</parameters>
+			<node>icub-b1</node>
 			<tag>actionPerformerTag</tag>
         </module>
 		
 		<module>
 			<name>gameManager</name>
-			<node>icub-b12</node>
+            <parameters>--stereo on</parameters>
+			<node>icub-b2</node>
 			<tag>gameManagerTag</tag>
         </module>
 		
@@ -29,14 +40,26 @@
 		<module>
 			<name>linearClassifierModule</name>
 			<parameters>--BufferSize 1 --databaseFolder DBActions --CSVM 0.1</parameters>
-			<node>icub15</node>
+			<node>icub13</node>
 			<tag>speechRecognizerTag</tag>
         </module>
 		
 		<module>
-			<name>yarpview --name /demoGestureRecognition/disparityViewer</name>
-			<node>icub16</node>
+			<name>yarpview</name>
+            <parameters>--name /demoGestureRecognition/disparityViewer</parameters>
+			<node>icub15</node>
 			<tag>yarpviewTag</tag>
+        </module>
+
+        <module>
+            <name>demoRec_main.lua</name>
+            <deployer>lua</deployer>
+            <node>console</node>
+            <dependencies>
+                <port timeout="10">/iSpeak</port>
+                <port timeout="10">/speechRecognizer/rpc</port>
+                <port timeout="10">/gameManager/rpc</port>
+            </dependencies>
         </module>
 		
 		<connection>
