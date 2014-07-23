@@ -17,7 +17,7 @@ The modules comprised here realize the memory game called [All gestures you can]
 For the game:
 - [speechRecognizer](https://github.com/robotology/speech)
 - [iSpeak] (https://github.com/robotology/icub-main.git)
-- [LUA](http://www.lua.org/download.html)
+- [LUA](http://www.lua.org/download.html) (Scripts written in LUA are employed to manage the speech recognition part of the demo.)
 
 For gestureRecognition module using Kinect:
 - [kinect-wrapper](https://github.com/robotology/kinect-wrapper.git)
@@ -25,7 +25,6 @@ For gestureRecognition module using Kinect:
 For gestureRecognitionStereo module using stereo vision:
 - [stereo-vision](https://github.com/robotology/stereo-vision)
 - [Hierarchical Image Representation](https://github.com/robotology/himrep)
-Scripts written in LUA are employed to manage the speech recognition part of the demo.
 
 ##### Cmaking the project
 The project is composed of four modules. The gestureRecognition and gestureRecognitionStereo modules can be used independently from the others. If you don't have kinect, gestureRecognition will not be built. If you don't have stereo-vision, gestureRecognitionStereo will not be built.
