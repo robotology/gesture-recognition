@@ -29,6 +29,13 @@ The project is composed of four modules. The gestureRecognition and gestureRecog
 ##### Running the gestureRecognition module
 In order to utilize this module, `KinectServer` (coded in [kinect-wrapper](https://github.com/robotology/kinect-wrapper.git)) is to be running.
 
+##### Running the gestureRecognitionStereo module
+It can run without any dependency. It is important to know that the database of the actions it is wanted to save and train is inside the context of the [Hierarchical Image Representation](https://github.com/robotology/himrep) folder.
+In order to train new actions, it is possible to use the following commands using the LUA application:
+- **"save [one | two | three | four | five]"**
+- **"let's train"**
+If you want to save more than five actions, it is necessary to modify slightly the LUA application file.
+
 ## Architecture of the game
 
 The game is structured in turns. One of the two players (the person or the robot) has to start performing a gesture. Then, the opponent recognizes the gesture, replicates it and adds a second random gesture to the sequence (from the pool of the possible gestures). At this point, the other player replicates the two gestures in the sequence, and adds a third gesture. This procedure is carried on until one of the two players loses.
@@ -37,7 +44,7 @@ The entire architecture can be run from the script files and can be seen in the 
 
 ![Diagram of All Gestures You Can architecture](misc/architecture.png) 
  
-First, the dependencies have to be launched (`app/scripts/demoGestureRecognitionDependencies.xml`), then the main modules (`app/scripts/demoGestureRecognition.xml`). Finally, the script `app/scripts/demoRec_main.lua` has to be launched. 
+If you are using kinect, the dependencies have to be launched first (`app/scripts/demoGestureRecognitionDependencies.xml`), otherwise you just have to launch the main modules (`app/scripts/demoGestureRecognition.xml` if you are using kinect, `app/scripts/demoGestureRecognitionStereo.xml` if you are using stereo). 
 
 The commands that have to be provided are, respectively:
 
@@ -47,6 +54,8 @@ The commands that have to be provided are, respectively:
 - **"You lost"**, after that the robot says **"I think you are wrong"**, to let the robot know that it lost.
 - **"Game over"**, to quit the game straight away.
 - **"Good bye"**, to close the LUA application. 
+
+The actions performed by the robot are specified in the file actions.ini if you are using kinect, and actionsStereo.ini if you are using stereo. In both cases it is easy to add or modify actions that you want the robot to perform.
 
 ## Documentation
 
