@@ -162,13 +162,9 @@ void printMatrixYarp(yarp::sig::Matrix &A)
 
 }
 
-YARP_DECLARE_DEVICES(icubmod)
-
 int main(int argc, char *argv[])
 {
     yarp::os::Network yarp;
-
-    YARP_REGISTER_DEVICES(icubmod)
 
     if (!yarp.checkNetwork())
         return -1;
