@@ -429,49 +429,33 @@ void GestRecognition::computeEdges()
 
 void GestRecognition::computeFlowDense(IplImage* previous, IplImage* current, Mat &optFlow)
 {
-    IplImage* velx=cvCreateImage(cvGetSize(previous), IPL_DEPTH_32F, 1);
-    IplImage* vely=cvCreateImage(cvGetSize(previous), IPL_DEPTH_32F, 1);
-    IplImage* pGray=cvCreateImage(cvGetSize(previous), IPL_DEPTH_8U, 1);
-    IplImage* cGray=cvCreateImage(cvGetSize(previous), IPL_DEPTH_8U, 1);
-    double lamda=0.5;
+    Mat pBgr=cvarrToMat(previous);
+    Mat cBgr=cvarrToMat(current);
+    Mat pGray(pBgr.rows,pBgr.cols,CV_8UC1);
+    Mat cGray(cBgr.rows,cBgr.cols,CV_8UC1);
 
-    cvCvtColor(previous, pGray, CV_BGR2GRAY);
-    cvCvtColor(current, cGray, CV_BGR2GRAY);
-    cvCalcOpticalFlowHS(pGray, cGray, 0, velx, vely, lamda, cvTermCriteria( CV_TERMCRIT_EPS | CV_TERMCRIT_ITER, 10, 1 ));
+    cvtColor(pBgr,pGray,CV_BGR2GRAY);
+    cvtColor(cBgr,cGray,CV_BGR2GRAY);
+    calcOpticalFlowFarneback(pGray,cGray,optFlow,0.5,1,3,15,5,1.1,OPTFLOW_FARNEBACK_GAUSSIAN);
 
-    int scale=1;
-
-    if(optFlow.rows==480 && optFlow.cols==640)
-        scale=2;
-
-    yarp::sig::Vector v(4);
     flow2D.clear();
+    yarp::sig::Vector v(4);
+    int scale=((optFlow.rows==480)&&(optFlow.cols==640))?2:1;
     for (int i=0; i<previous->height; i++)
     {
         for (int j=0; j<previous->width; j++)
         {
             v[0]=(float)j/scale; // prev X
             v[1]=(float)i/scale; // prev Y
-            v[2]=((float*)(velx->imageData + i*velx->widthStep))[j]/scale; //deltaX
-            v[3]=((float*)(vely->imageData + i*vely->widthStep))[j]/scale; // deltaY
-            optFlow.ptr<float>(i)[2*j]=v[2];
-            optFlow.ptr<float>(i)[2*j+1]=v[3];
+            v[2]=optFlow.ptr<float>(i)[2*j]/scale;   // delta X
+            v[3]=optFlow.ptr<float>(i)[2*j+1]/scale; // delta Y
 
-            double distance=sqrt(v[2]*v[2] + v[3]*v[3]);
-
-            if(distance>thModFlow)
+            if (norm(v.subVector(2,3))>thModFlow)
                 flow2D.push_back(v);
             else
-            {
-                optFlow.ptr<float>(i)[2*j]=0;
-                optFlow.ptr<float>(i)[2*j+1]=0;
-            }
+                optFlow.ptr<float>(i)[2*j]=optFlow.ptr<float>(i)[2*j+1]=0.0F;
         }
     }
-    cvReleaseImage(&velx);
-    cvReleaseImage(&vely);
-    cvReleaseImage(&pGray);
-    cvReleaseImage(&cGray);
 }
 
 void GestRecognition::computeFlowHistogram()
@@ -545,7 +529,7 @@ void GestRecognition::computeHOG(IplImage* image, vector<double> &currHist, doub
 
     for(int i=0; i<nbins; i++)
     {
-        float bin_value=cvQueryHistValue_1D(histTemp,i);
+        float bin_value=cvGetReal1D(histTemp->bins,i);
         currHist[i]=bin_value;
     }
 
@@ -560,9 +544,9 @@ void GestRecognition::computeHOG(IplImage* image, vector<double> &currHist, doub
 void GestRecognition::computeSceneFlow(IplImage* previousMask,IplImage* currentMask, Mat &optFlow)
 {
     flow3D.clear();
-    Mat maskTempO(previousMask);
+    Mat maskTempO=cvarrToMat(previousMask);
 
-    Mat maskTempN(currentMask);
+    Mat maskTempN=cvarrToMat(currentMask);
     yarp::sig::Vector oldPoint(3);
     yarp::sig::Vector currPoint(3);
     Point3f flow;

@@ -233,8 +233,8 @@ bool GestRecognition::updateModule()
             frameDiff=cvCreateImage(cvSize(imgLNext->width,imgLNext->height),8,1);
             depthToDisplay.resize(imgLNext->width,imgLNext->height);
 
-            Mat tmpLNext(imgLNext);
-            Mat tmpRNext(imgRNext);
+            Mat tmpLNext=cvarrToMat(imgLNext);
+            Mat tmpRNext=cvarrToMat(imgRNext);
             disp->setImages(tmpLNext,tmpRNext);
             while (!disp->checkDone())
                 Time::delay(0.01);
@@ -242,7 +242,7 @@ bool GestRecognition::updateModule()
             disp->getDisparity(dispNew);
             IplImage disparity=dispNew;
             thresholdBW(&disparity, maskNew, threshold,0,0,value);
-            Mat tmp(maskNew);
+            Mat tmp=cvarrToMat(maskNew);
             sceneT->setImage(tmp);
             sceneT->start();
             while (!sceneT->checkDone())
@@ -269,9 +269,9 @@ bool GestRecognition::updateModule()
             cvSmooth(imgLNext, imgLNext, CV_GAUSSIAN, 3, 0, 0, 0);
             cvSmooth(imgRNext, imgRNext, CV_GAUSSIAN, 3, 0, 0, 0);
 
-            Mat tmpLNext(imgLNext);
-            Mat tmpRNext(imgRNext);
-            Mat tmpLPrev(imgLPrev);
+            Mat tmpLNext=cvarrToMat(imgLNext);
+            Mat tmpRNext=cvarrToMat(imgRNext);
+            Mat tmpLPrev=cvarrToMat(imgLPrev);
             
             disp->setImages(tmpLNext,tmpRNext);
             opt->setImages(tmpLPrev,tmpLNext);
@@ -309,7 +309,7 @@ bool GestRecognition::updateModule()
                 outImage.write();
             }
 
-            Mat tmp(tmpMaskNew);
+            Mat tmp=cvarrToMat(tmpMaskNew);
             sceneT->setImage(tmp);
             sceneT->resume();
             hogT->setImage(tmp);

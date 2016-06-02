@@ -16,8 +16,11 @@
  * Public License for more details
  */
 
+#include <string>
+
 #include "HOGThread.h"
 
+using namespace std;
 using namespace cv;
 using namespace yarp::os;
 using namespace yarp::math;
@@ -190,7 +193,7 @@ void HOGThread::computeHOG(IplImage* img, yarp::sig::Vector &currHist, double Th
 
     for(int i=0; i<nbins; i++)
     {   
-        float bin_value=cvQueryHistValue_1D(histTemp,i);
+        float bin_value=cvGetReal1D(histTemp->bins,i);
         currHist.push_back(bin_value);
     }
 

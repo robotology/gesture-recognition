@@ -17,18 +17,19 @@
  */
 
 #include <deque>
-#include <stdio.h>
+#include <cstdio>
 #include <sstream>
 #include <vector>
 #include <iostream>
-#include <iostream>
 #include <fstream>
 #include <string>
-#include <yarp/sig/Vector.h>
+
 #include <yarp/os/Bottle.h>
 #include <yarp/os/Property.h>
-#include <yarp/math/Math.h>
 #include <yarp/os/ResourceFinder.h>
+#include <yarp/sig/Vector.h>
+#include <yarp/math/Math.h>
+
 #include "Model.h"
 
 class ModelSVM: public Model
