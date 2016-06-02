@@ -17,10 +17,11 @@
  */
 
 #include <deque>
-#include <stdio.h>
+#include <cstdio>
 #include <vector>
 #include <iostream>
 #include <fstream>
+
 #include <yarp/sig/Vector.h>
 
 class Model

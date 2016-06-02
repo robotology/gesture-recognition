@@ -18,32 +18,22 @@
 
 #include <string>
 #include <vector>
-#include <stdio.h>
+#include <cstdio>
 #include <iostream>
 #include <fstream>
 #include <cmath>
-#include <opencv2/legacy/legacy.hpp>
+
+#include <opencv2/opencv.hpp>
+
 #include <yarp/os/Network.h>
 #include <yarp/os/RFModule.h>
 #include <yarp/os/Semaphore.h>
 #include <yarp/os/BufferedPort.h>
-
 #include <yarp/sig/Vector.h>
 #include <yarp/sig/Matrix.h>
 #include <yarp/sig/Image.h>
-
 #include <yarp/math/Math.h>
 
-// C RunTime Header Files
-#include <stdlib.h>
-#if !defined(__APPLE__)
-    #include <malloc.h>
-    //#include <tchar.h>
-#endif
-#include <memory.h>
-#include <cv.h>
-#include <highgui.h>
-#include <cxcore.h>
 #include <iCub/ctrl/math.h>
 #include <kinectWrapper/kinectTags.h>
 #include <kinectWrapper/kinectWrapper_client.h>
