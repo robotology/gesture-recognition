@@ -43,7 +43,7 @@ In order to train new actions, it is possible to use the following commands usin
 - **"save [one | two | three | four | five | six]"**
 - **"let's train"**
 
-If you want to save more than five actions, it is necessary to modify slightly the LUA application file, or you can just issue equivalent commands to `/gestureRecognitionStereo/rpc` port.
+If you want to save more than six actions, it is necessary to slightly modify the LUA application file, or you can just issue the equivalent commands to `/gestureRecognitionStereo/rpc` port, namely **save [action]** and **train**.
 
 ## Architecture of the game
 
