@@ -171,8 +171,8 @@ int main(int argc, char *argv[])
 
     yarp::os::ResourceFinder rf;
     rf.setVerbose(true);
-    rf.setDefaultContext("allGesturesYouCan2.0");
-    rf.setDefaultConfigFile("config.ini");
+    rf.setDefaultContext("gesture-recognition");
+    rf.setDefaultConfigFile("gestureRecognitionStereo.ini");
     rf.setDefault("dictionary_hog","dictionary_hog.ini");
     rf.setDefault("dictionary_flow","dictionary_flow.ini");
     rf.configure(argc,argv);

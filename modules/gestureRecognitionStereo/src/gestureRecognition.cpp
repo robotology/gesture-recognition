@@ -68,8 +68,7 @@ bool GestRecognition::configure(ResourceFinder &rf)
     outSpeak.open(("/"+name+"/ispeak").c_str());
     outImage.open(("/"+name+"/depth").c_str());
     imagePortInLeft.open(("/"+name+"/img/left").c_str());
-    imagePortInRight.open(("/"+name+"/img/right").c_str());
-    
+    imagePortInRight.open(("/"+name+"/img/right").c_str());    
 
     imageL=new ImageOf<PixelRgb>;
     imageR=new ImageOf<PixelRgb>;
@@ -81,8 +80,7 @@ bool GestRecognition::configure(ResourceFinder &rf)
     ResourceFinder cameraFinder;
     cameraFinder.setDefaultContext("cameraCalibration");
     cameraFinder.setDefaultConfigFile(configFileDisparity.c_str());
-    int argc=0; char *argv[1];
-    cameraFinder.configure(argc,argv);
+    cameraFinder.configure(0,NULL);
 
     disp=new DisparityThread(name,cameraFinder,false,false);
     //disp->setDispParameters(true,15,50,16,64,7,0,63,0);
@@ -213,7 +211,7 @@ bool GestRecognition::updateModule()
         initR=true;
     }
 
-    if(initL && initR )
+    if(initL && initR)
     {
         if (init)
         {
@@ -280,9 +278,9 @@ bool GestRecognition::updateModule()
             if(disp==NULL || opt==NULL)
             {
                 mutex->post();
-            	return true;
+                return true;
             }
-            	
+                
             while (!disp->checkDone()||!opt->checkDone())
               Time::delay(0.01);
             
