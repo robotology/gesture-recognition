@@ -1,46 +1,45 @@
-
 <application>
-<name>Demo Gesture Recognition</name>
+    <name>Demo Gesture Recognition</name>
 
-	<dependencies>
-		<port>/kinectServer/depth:o</port>
-	</dependencies>
+    <module>
+        <name>kinectServer</name>
+        <node>node1</node>
+    </module>
 
-	<module>
-		<name>iSpeak</name>
+    <module>
+        <name>speechRecognizer</name>
+        <node>node-win1</node>
+    </module>
+
+    <module>
+        <name>iSpeak</name>
         <parameters>--package acapelacmd</parameters>
-		<node>node1</node>
-		<tag>iSpeakTag</tag>
-	</module>
+        <node>node1</node>
+    </module>
 
-	<module>
-		<name>gestureRecognition</name>
-		<parameters>--showImages false</parameters>
-		<node>node2</node>
-		<stdio>node2</stdio>
-		<tag>gestureRecognitionTag</tag>
-	</module>
+    <module>
+        <name>gestureRecognition</name>
+        <parameters>--showImages false</parameters>
+        <node>node2</node>
+    </module>
 
-	<module>
-		<name>actionPerformer</name>
+    <module>
+        <name>actionPerformer</name>
         <parameters>--stereo off</parameters>
-		<node>node3</node>
-		<tag>actionPerformerTag</tag>
-	</module>
+        <node>node3</node>
+    </module>
 
-	<module>
-		<name>gameManager</name>
-		<parameters>--stereo off</parameters>
-		<node>node4</node>
-		<tag>gameManagerTag</tag>
-	</module>
+    <module>
+        <name>gameManager</name>
+        <parameters>--stereo off</parameters>
+        <node>node4</node>
+    </module>
 
-	<module>
-		<name>yarpview</name>
-		<parameters>--name /demoGestureRecognition/skeleton</parameters>
-		<node>node5</node>
-		<tag>depth</tag>
-	</module>
+    <module>
+        <name>yarpview</name>
+        <parameters>--name /demoGestureRecognition/skeleton</parameters>
+        <node>console</node>
+    </module>
 
     <module>
         <name>demoRec_main.lua</name>
@@ -53,34 +52,34 @@
         </dependencies>
     </module>
 
-	<connection>
-		<from>/gestureRecognition/images</from>
-		<to>/demoGestureRecognition/skeleton</to>
-		<protocol>udp</protocol>
-	</connection>
+    <connection>
+        <from>/gestureRecognition/images</from>
+        <to>/demoGestureRecognition/skeleton</to>
+        <protocol>udp</protocol>
+    </connection>
 
-	<connection>
-		<from>/gestureRecognition/scores</from>
-		<to>/gameManager/scores:i</to>
-		<protocol>tcp</protocol>
-	</connection>
+    <connection>
+        <from>/gestureRecognition/scores</from>
+        <to>/gameManager/scores:i</to>
+        <protocol>tcp</protocol>
+    </connection>
 
-	<connection>
-		<from>/actionPerformer/out</from>
-		<to>/gameManager/rpc</to>
-		<protocol>tcp</protocol>
-	</connection>
+    <connection>
+        <from>/actionPerformer/out</from>
+        <to>/gameManager/rpc</to>
+        <protocol>tcp</protocol>
+    </connection>
 
-	<connection>
-		<from>/gameManager/out</from>
-		<to>/actionPerformer/rpc</to>
-		<protocol>tcp</protocol>
-	</connection>
+    <connection>
+        <from>/gameManager/out</from>
+        <to>/actionPerformer/rpc</to>
+        <protocol>tcp</protocol>
+    </connection>
 
-	<connection>
-		<from>/gameManager/outspeak</from>
-		<to>/iSpeak</to>
-		<protocol>tcp</protocol>
-	</connection>
+    <connection>
+        <from>/gameManager/outspeak</from>
+        <to>/iSpeak</to>
+        <protocol>tcp</protocol>
+    </connection>
 
 </application>
