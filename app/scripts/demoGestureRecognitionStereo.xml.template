@@ -1,6 +1,12 @@
 <application>
     <name>Demo Gesture Recognition Stereo</name>
 
+    <dependencies>
+        <port>/icub/camcalib/left/out</port>
+        <port>/icub/camcalib/right/out</port>
+        <port>/icub/yarprobotinterface<</port>
+    </dependencies>
+
     <module>
         <name>speechRecognizer</name>
         <node>node-win1</node>
@@ -59,14 +65,14 @@
     </connection>
 
     <connection>
-        <from>/icub/camcalib/right/out</from>
-        <to>/gestureRecognitionStereo/img/right</to>
+        <from>/icub/camcalib/left/out</from>
+        <to>/gestureRecognitionStereo/img/left</to>
         <protocol>tcp</protocol>
     </connection>
 
     <connection>
-        <from>/icub/camcalib/left/out</from>
-        <to>/gestureRecognitionStereo/img/left</to>
+        <from>/icub/camcalib/right/out</from>
+        <to>/gestureRecognitionStereo/img/right</to>
         <protocol>tcp</protocol>
     </connection>
 

@@ -1,6 +1,10 @@
 <application>
     <name>Demo Gesture Recognition</name>
 
+    <dependencies>
+        <port>/icub/yarprobotinterface<</port>
+    </dependencies>
+
     <module>
         <name>kinectServer</name>
         <node>node1</node>
