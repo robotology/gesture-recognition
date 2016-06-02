@@ -16,7 +16,7 @@
  * Public License for more details
  */
 
-#include <Recognizer.h>
+#include "Recognizer.h"
 
 using namespace std;
 using namespace yarp::sig;

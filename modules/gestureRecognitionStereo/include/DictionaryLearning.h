@@ -20,18 +20,19 @@
 #define __DICTIONARYLEARNING__
 
 #include <deque>
-#include <stdio.h>
+#include <cstdio>
 #include <sstream>
 #include <vector>
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <cmath>
-#include <yarp/sig/Vector.h>
+
+#include <yarp/os/Time.h>
 #include <yarp/os/Bottle.h>
 #include <yarp/os/Property.h>
+#include <yarp/sig/Vector.h>
 #include <yarp/math/Math.h>
-#include <yarp/os/Time.h>
 
 class DictionaryLearning
 {
@@ -39,7 +40,7 @@ class DictionaryLearning
     yarp::sig::Matrix dictionary;
     yarp::sig::Matrix A;
     std::vector<yarp::sig::Vector>  dictionaryBOW;
-    float                           *f_dictionaryBOW;
+    float                          *f_dictionaryBOW;
     std::string group;
 
     int dictionarySize;

@@ -16,15 +16,15 @@
  * Public License for more details
  */
 
-#include <iCub/iKin/iKinFwd.h>
 #include <yarp/os/all.h>
-#include "iCub/stereoVision/disparityThread.h"
-#include "iCub/stereoVision/opticalFlowThread.h"
-#include"DictionaryLearning.h"
-
 #include <yarp/sig/Matrix.h>
 #include <yarp/sig/Image.h>
-#include <yarp/os/Stamp.h>
+
+#include <iCub/iKin/iKinFwd.h>
+#include <iCub/stereoVision/disparityThread.h>
+#include <iCub/stereoVision/opticalFlowThread.h>
+
+#include "DictionaryLearning.h"
 
 using namespace std; 
 using namespace yarp::os; 

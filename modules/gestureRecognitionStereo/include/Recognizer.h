@@ -19,11 +19,13 @@
 #include <string>
 #include <vector>
 #include <cmath>
-#include <yarp/os/Thread.h>
-#include <yarp/math/Math.h>
-#include <iCub/ctrl/filters.h>
 #include <iostream>
 #include <fstream>
+
+#include <yarp/os/Thread.h>
+#include <yarp/math/Math.h>
+
+#include <iCub/ctrl/filters.h>
 
 class Recognizer 
 {

@@ -17,7 +17,8 @@
  */
 
 #include <yarp/os/Network.h>
-#include <HOGThread.h>
+
+#include "HOGThread.h"
 #include "sceneFlowThread.h"
 #include "Recognizer.h"
 

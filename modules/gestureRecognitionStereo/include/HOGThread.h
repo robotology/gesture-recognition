@@ -18,10 +18,12 @@
 
 #include <cv.h>
 #include <highgui.h>
+
 #include <yarp/os/RateThread.h>
 #include <yarp/os/ResourceFinder.h>
 #include <yarp/sig/Vector.h>
 #include <yarp/math/Math.h>
+
 #include "DictionaryLearning.h"
 
 #define MAXPOOLING      0
