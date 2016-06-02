@@ -2,7 +2,7 @@
     <name>Demo Gesture Recognition</name>
 
     <dependencies>
-        <port>/icub/yarprobotinterface<</port>
+        <port>/icub/yarprobotinterface</port>
     </dependencies>
 
     <module>
@@ -41,7 +41,7 @@
 
     <module>
         <name>yarpview</name>
-        <parameters>--name /demoGestureRecognition/skeleton</parameters>
+        <parameters>--name /demoGestureRecognition/skeleton --compact</parameters>
         <node>console</node>
     </module>
 

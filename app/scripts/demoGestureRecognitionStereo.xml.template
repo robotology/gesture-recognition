@@ -4,7 +4,7 @@
     <dependencies>
         <port>/icub/camcalib/left/out</port>
         <port>/icub/camcalib/right/out</port>
-        <port>/icub/yarprobotinterface<</port>
+        <port>/icub/yarprobotinterface</port>
     </dependencies>
 
     <module>
@@ -43,7 +43,7 @@
 
     <module>
         <name>yarpview</name>
-        <parameters>--name /demoGestureRecognition/disparityViewer</parameters>
+        <parameters>--name /demoGestureRecognition/disparityViewer --compact</parameters>
         <node>console</node>
     </module>
 

@@ -34,15 +34,16 @@ In order to utilize this module, `KinectServer` (coded in [kinect-wrapper](https
 
 ##### Running the gestureRecognitionStereo module
 It can run without any dependency. It requires some commands to start recognizing. In particular, you can write on the rpc port
-- **"pos"** to save the initial position and
+- **"pos"** to save the initial position.
 - **"rec"** to start recognizing.
-Since the depth changes very much at every run, it is usually better to train the actions often. The database of the actions it is wanted to save and train is inside the context of the [Hierarchical Image Representation](https://github.com/robotology/himrep) folder, and it is called DBActions.
 
-    In order to train new actions, it is possible to use the following commands using the LUA application:
+Since the depth changes very much at every run, it is usually better to train the actions often. The database of the actions it is wanted to save and train is inside the context of the [Hierarchical Image Representation](https://github.com/robotology/himrep) folder, and it is called DBActions.
+In order to train new actions, it is possible to use the following commands using the LUA application:
+
 - **"save [one | two | three | four | five | six]"**
 - **"let's train"**
 
-    If you want to save more than five actions, it is necessary to modify slightly the LUA application file, or you can just issue equivalent commands to `/demoGestureRecognitionStereo/rpc` port.
+If you want to save more than five actions, it is necessary to modify slightly the LUA application file, or you can just issue equivalent commands to `/gestureRecognitionStereo/rpc` port.
 
 ## Architecture of the game
 
