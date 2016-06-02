@@ -11,7 +11,7 @@ return rfsm.state {
                    ret = ispeak_port:open("/demoRec/speak")
                    ret = ret and speechRecog_port:open("/demoRec/speechRecog")
                    ret = ret and demoRec_port:open("/demoRec/action:o")
-				   ret = ret and gestRec_port:open("/demoRec/gestRec:o")
+                   ret = ret and gestRec_port:open("/demoRec/gestRec:o")
                    if ret == false then
                            rfsm.send_events(fsm, 'e_error')
                    else
@@ -28,8 +28,8 @@ return rfsm.state {
                    ret = yarp.NetworkBase_connect(ispeak_port:getName(), "/iSpeak")
                    ret =  ret and yarp.NetworkBase_connect(speechRecog_port:getName(), "/speechRecognizer/rpc")
                    -- ret =  ret and yarp.NetworkBase_connect(demoRec_port:getName(), "/demoActionRecognition/rpc")
-				   yarp.NetworkBase_connect(demoRec_port:getName(), "/gameManager/rpc")
-				   ret =  ret and yarp.NetworkBase_connect(gestRec_port:getName(), "/gestureRecognitionStereo/rpc")
+                              yarp.NetworkBase_connect(demoRec_port:getName(), "/gameManager/rpc")
+                              ret =  ret and yarp.NetworkBase_connect(gestRec_port:getName(), "/gestureRecognitionStereo/rpc")
                    if ret == false then
                            print("\n\nERROR WITH CONNECTIONS, PLEASE CHECK\n\n")
                            rfsm.send_events(fsm, 'e_error')
@@ -85,11 +85,11 @@ return rfsm.state {
                    yarp.NetworkBase_disconnect(ispeak_port:getName(), "/iSpeak")
                    yarp.NetworkBase_disconnect(speechRecog_port:getName(), "/speechRecognizer/rpc")
                    yarp.NetworkBase_disconnect(demoRec_port:getName(), "/gameManager/rpc")
-				   yarp.NetworkBase_disconnect(gestRec_port:getName(), "/gestureRecognitionStereo/rpc")
+                              yarp.NetworkBase_disconnect(gestRec_port:getName(), "/gestureRecognitionStereo/rpc")
                    ispeak_port:close()
                    speechRecog_port:close()
                    demoRec_port:close()
-				   gestRec_port:close()
+                              gestRec_port:close()
 
                    shouldExit = true;
            end
