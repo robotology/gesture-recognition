@@ -16,8 +16,7 @@
  * Public License for more details
  */
 
-#include <cv.h>
-#include <highgui.h>
+#include <opencv2/opencv.hpp>
 
 #include <yarp/os/RateThread.h>
 #include <yarp/os/ResourceFinder.h>
