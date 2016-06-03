@@ -17,8 +17,8 @@
 
     <module>
         <name>iSpeak</name>
-        <parameters>--package acapelacmd</parameters>
-        <node>node1</node>
+        <parameters>--package acapela-tts</parameters>
+        <node>node-win1</node>
     </module>
 
     <module>
@@ -87,6 +87,12 @@
         <from>/gameManager/outspeak</from>
         <to>/iSpeak</to>
         <protocol>tcp</protocol>
+    </connection>
+
+    <connection>
+         <from>/iSpeak/emotions:o</from>
+         <to>/icub/face/emotions/in</to>
+         <protocol>tcp</protocol>
     </connection>
 
 </application>
