@@ -40,10 +40,10 @@ It can run without any dependency. It requires some commands to start recognizin
 Since the depth changes very much at every run, it is usually better to train the actions often. The database of the actions it is wanted to save and train is inside the context of the [Hierarchical Image Representation](https://github.com/robotology/himrep) folder, and it is called DBActions.
 In order to train new actions, it is possible to use the following commands using the LUA application:
 
-- **"save [one | two | three | four | five | six]"**
+- **"save [one | two | three | four | five]"**
 - **"let's train"**
 
-If you want to save more than six actions, it is necessary to slightly modify the LUA application file.
+If you want to save more than five actions, it is necessary to slightly modify the LUA application file.
 
 ## Architecture of the game
 
