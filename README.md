@@ -27,12 +27,12 @@ For gestureRecognitionStereo module using stereo vision:
 - [Hierarchical Image Representation](https://github.com/robotology/himrep)
 
 ##### Cmaking the project
-The project is composed of four modules. The gestureRecognition and gestureRecognitionStereo modules can be used independently from the others. If you don't have kinect, gestureRecognition will not be built. If you don't have stereo-vision, gestureRecognitionStereo will not be built.
+The project is composed of four modules. The `gestureRecognition` and `gestureRecognitionStereo` modules can be used independently from the others. If you don't have kinect, `gestureRecognition` will not be built. If you don't have `stereo-vision`, `gestureRecognitionStereo` will not be built.
 
-##### Running the gestureRecognition module
+##### Running the gestureRecognition
 In order to utilize this module, `KinectServer` (coded in [kinect-wrapper](https://github.com/robotology/kinect-wrapper.git)) is to be running. Then, gestureRecognition can be launched. It will start immediately to recognize gestures belonging to the pool depicted in `app/conf/supported_actions_easy.jpg`.
 
-##### Running the gestureRecognitionStereo module
+##### Running the gestureRecognitionStereo
 It can run without any dependency. It requires some commands to start recognizing. In particular, you can write on the rpc port
 - **"pos"** to save the initial position.
 - **"rec"** to start recognizing.
@@ -53,18 +53,18 @@ The entire architecture can be run from the script files and can be seen in the 
 
 ![Diagram of All Gestures You Can architecture](misc/architecture.png)
 
-If you are using kinect, the dependencies have to be launched first (`app/scripts/demoGestureRecognitionDependencies.xml`), otherwise you just have to launch the main modules (`app/scripts/demoGestureRecognition.xml` if you are using kinect, `app/scripts/demoGestureRecognitionStereo.xml` if you are using stereo).
+Just launch the main application (`app/scripts/demoGestureRecognition.xml` if you are using kinect, `app/scripts/demoGestureRecognitionStereo.xml` if you are using stereo).
 
 The commands that have to be provided are, respectively:
 
 - **"Let's start"**, to start the game. If the robot starts, it will say **"It's your turn"**, and the person will just have to perform the gesture. Otherwise, the person will perform the gesture and then say **"Your turn"**.
-- **"Your turn"**, as soon as the person is finished performing the gestures.
+- **"Your turn"**, as soon as the person is done performing the gestures.
 - **"You rock"**, after that the robot says **"I think you are wrong"**, to let the robot know that it won.
 - **"You lost"**, after that the robot says **"I think you are wrong"**, to let the robot know that it lost.
-- **"Game over"**, to quit the game straight away.
+- **"Game over"**, to quit the game straightaway.
 - **"Good bye"**, to close the LUA application.
 
-The actions performed by the robot are specified in the file actions.ini if you are using kinect, and actionsStereo.ini if you are using stereo. In both cases it is easy to add or modify actions that you want the robot to perform.
+The actions performed by the robot are specified in the file `actions.ini` if you are using kinect, and `actionsStereo.ini` if you are using stereo. In both cases it is easy to add or modify actions that you want the robot to perform.
 
 ## Documentation
 

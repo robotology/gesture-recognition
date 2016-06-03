@@ -145,7 +145,7 @@ Windows, Linux
 **/
 
 #include <yarp/os/Network.h>
-#include "gestureRecognition.h"
+#include "gestureRecognitionStereo.h"
 
 void printMatrixYarp(yarp::sig::Matrix &A) 
 {

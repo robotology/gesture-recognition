@@ -24,6 +24,9 @@
     <module>
         <name>gestureRecognition</name>
         <parameters>--showImages false</parameters>
+        <dependencies>
+            <port timeout="10">/kinectServer/rpc</port>
+        </dependencies>
         <node>node2</node>
     </module>
 
