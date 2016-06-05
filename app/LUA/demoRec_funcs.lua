@@ -20,12 +20,12 @@ function demoRec_actions(port, actName)
    return reply
 end
 
-function demoRec_save(port, actName)
+function demoRec_save(port, actNum)
    local wb = yarp.Bottle()
    local reply = yarp.Bottle()
    wb:clear()
    wb:addString("save")
-   wb:addString(actName)
+   wb:addInt(actNum)
    port:write(wb,reply)
    return reply
 end

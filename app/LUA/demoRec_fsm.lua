@@ -70,19 +70,19 @@ interact_fsm = rfsm.state{
                                    elseif act == "save" then
                                            demoRec_actions(gestRec_port,"save")
                                    elseif act == "one" then
-                                           demoRec_save(gestRec_port,"action1")
+                                           demoRec_save(demoRec_port,1)
                                    elseif act == "two" then
-                                           demoRec_save(gestRec_port,"action2")
+                                           demoRec_save(demoRec_port,2)
                                    elseif act == "three" then
-                                           demoRec_save(gestRec_port,"action3")
+                                           demoRec_save(demoRec_port,3)
                                    elseif act == "four" then
-                                           demoRec_save(gestRec_port,"action4")
+                                           demoRec_save(demoRec_port,4)
                                    elseif act == "five" then
-                                           demoRec_save(gestRec_port,"action5")
+                                           demoRec_save(demoRec_port,5)
                                    elseif act == "six" then
-                                           demoRec_save(gestRec_port,"action6")
+                                           demoRec_save(demoRec_port,6)
                                    elseif act == "train" then
-                                           demoRec_actions(gestRec_port,"train")
+                                           demoRec_actions(demoRec_port,"trained")
                                    elseif act == "recognize" then
                                            demoRec_actions(gestRec_port,"rec")
                                    elseif act == "position" then

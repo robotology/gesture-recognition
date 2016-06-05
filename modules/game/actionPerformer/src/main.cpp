@@ -31,7 +31,7 @@ The commands sent as bottles to the module port /<modName>/rpc
 are described in the following:
 
 <b>ACTION</b> \n
-format: [action] \n
+format: [action] <id> \n
 action: the module receives the gesture IDs to be performed and execute them.
 
 <b>STOP</b> \n
