@@ -1,5 +1,3 @@
-
-
 ### Commands:
  - Let's start  
  - You rock 
@@ -8,8 +6,12 @@
  - Game over 
  - Good bye 
  
- ### To save:
+### To save:
  - Let's save
  - Let's stop
+
+### To teach actions (only stereo):
+ - Save [one | two | ... | six]
+ - Let's train
 
 
