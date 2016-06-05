@@ -55,6 +55,7 @@
             <port timeout="10">/iSpeak</port>
             <port timeout="10">/speechRecognizer/rpc</port>
             <port timeout="10">/gameManager/rpc</port>
+            <port timeout="10">/gestureRecognitionStereo/rpc</port>
         </dependencies>
     </module>
 
